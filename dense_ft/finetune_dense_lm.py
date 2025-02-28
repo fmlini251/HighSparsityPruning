@@ -42,7 +42,7 @@ from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
     HfArgumentParser,
-    Trainer,
+    # Trainer,
     TrainingArguments,
     default_data_collator,
     is_torch_tpu_available,
@@ -52,14 +52,14 @@ from transformers.testing_utils import CaptureLogger
 from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
-
-from peft import (
-    LoraConfig,
-    get_peft_model,
-    get_peft_model_state_dict,
-    prepare_model_for_kbit_training,
-    set_peft_model_state_dict,
-)
+from sparse_trainer import SparseTrainer
+# from peft import (
+#     LoraConfig,
+#     get_peft_model,
+#     get_peft_model_state_dict,
+#     prepare_model_for_kbit_training,
+#     set_peft_model_state_dict,
+# )
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 # check_min_version("4.29.0.dev0")
@@ -87,22 +87,30 @@ class ModelArguments:
             )
         },
     )
+    teacher_name_or_path: Optional[str] = field(
+        default=None,
+        metadata={
+            "help": (
+                "The model checkpoint for teacher's weights initialization.Don't set if you want to finetune a model without Knowledge Distillation"
+            )
+        },
+    )
     model_type: Optional[str] = field(
         default=None,
         metadata={"help": "If training from scratch, pass a model type from the list: " + ", ".join(MODEL_TYPES)},
     )
-    lora_r: Optional[int] = field(
-        default=8,
-        metadata={"help": "parameter lora_r"},
-    )
-    lora_alpha: Optional[int] = field(
-        default=16,
-        metadata={"help": "parameter lora_alpha"},
-    )
-    lora_dropout: Optional[float] = field(
-        default=0.05,
-        metadata={"help": "parameter lora_dropout"},
-    )
+    # lora_r: Optional[int] = field(
+    #     default=8,
+    #     metadata={"help": "parameter lora_r"},
+    # )
+    # lora_alpha: Optional[int] = field(
+    #     default=16,
+    #     metadata={"help": "parameter lora_alpha"},
+    # )
+    # lora_dropout: Optional[float] = field(
+    #     default=0.05,
+    #     metadata={"help": "parameter lora_dropout"},
+    # )
     # lora_target_modules: Optional[List[str]] = field(
     #     default=["q_proj","v_proj"],
     #     metadata={"help": "parameter lora_target_modules"},
@@ -370,18 +378,21 @@ def main():
         )
 
     model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, torch_dtype=torch.float16, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto")
-
+    model.config.output_hidden_states=True
+    teacher = AutoModelForCausalLM.from_pretrained(model_args.teacher_name_or_path, torch_dtype=torch.float16, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto") if model_args.teacher_name_or_path else None
+    teacher.config.output_hidden_states=True
+    teacher.eval()
     ############################################################################################
-    model = prepare_model_for_kbit_training(model)
-    config = LoraConfig(
-        r=model_args.lora_r,
-        lora_alpha=model_args.lora_alpha,
-        target_modules=["q_proj","v_proj"],
-        lora_dropout=model_args.lora_dropout,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
-    model = get_peft_model(model, config)
+    # model = prepare_model_for_kbit_training(model)
+    # config = LoraConfig(
+    #     r=model_args.lora_r,
+    #     lora_alpha=model_args.lora_alpha,
+    #     target_modules=["q_proj","v_proj"],
+    #     lora_dropout=model_args.lora_dropout,
+    #     bias="none",
+    #     task_type="CAUSAL_LM",
+    # )
+    # model = get_peft_model(model, config)
     ############################################################################################
 
     # We resize the embeddings only when necessary to avoid index errors. If you are creating a model from scratch
@@ -530,10 +541,11 @@ def main():
     training_args.save_steps = 50
     training_args.save_total_limit = 15
     training_args.group_by_length = False
+    training_args.loss_type = "SquareHead"
     ################################################################################################################
 
     # Initialize our Trainer
-    trainer = Trainer(
+    trainer = SparseTrainer(
         model=model,
         args=training_args,
         train_dataset=train_dataset if training_args.do_train else None,
@@ -545,21 +557,22 @@ def main():
         preprocess_logits_for_metrics=preprocess_logits_for_metrics
         if training_args.do_eval and not is_torch_tpu_available()
         else None,
+        teacher=teacher
     )
 
-    ############## code imported from alpaca-lora ###################
-    model.config.use_cache = False
+    # ############## code imported from alpaca-lora ###################
+    # model.config.use_cache = False
 
-    old_state_dict = model.state_dict
-    model.state_dict = (
-        lambda self, *_, **__: get_peft_model_state_dict(
-            self, old_state_dict()
-        )
-    ).__get__(model, type(model))
+    # old_state_dict = model.state_dict
+    # model.state_dict = (
+    #     lambda self, *_, **__: get_peft_model_state_dict(
+    #         self, old_state_dict()
+    #     )
+    # ).__get__(model, type(model))
 
-    if torch.__version__ >= "2" and sys.platform != "win32":
-        model = torch.compile(model)
-    ############## code imported from alpaca-lora ###################
+    # if torch.__version__ >= "2" and sys.platform != "win32":
+    #     model = torch.compile(model)
+    # ############## code imported from alpaca-lora ###################
 
     # Training
     if training_args.do_train:

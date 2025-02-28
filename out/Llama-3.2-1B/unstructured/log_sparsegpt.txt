@@ -1,0 +1,5 @@
+method	actual_sparsity	ppl_test
+sparsegpt	0.5000	18.9915
+sparsegpt	0.6000	45.5172
+sparsegpt	0.7000	135.6340
+sparsegpt	0.8000	500.2476

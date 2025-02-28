@@ -1,6 +1,7 @@
 from transformers.trainer import Trainer 
 import torch 
-import torch.nn as nn 
+import torch.nn as nn
+import json
 
 def find_layers(module, layers=[nn.Linear], name=''):
     if type(module) in layers:
@@ -62,16 +63,28 @@ def check_sparsity(model):
 
     model.config.use_cache = use_cache 
     return float(count)/total_params 
-
+def kldiv_loss(student_logits, teacher_logits, temperature=1):
+    "Kullback-Leibler divergence loss"
+    num_tokens = student_logits.numel() / student_logits.size(-1)
+    return (
+        nn.functional.kl_div(
+            input=nn.functional.log_softmax(student_logits / temperature, dim=-1),
+            target=nn.functional.log_softmax(teacher_logits / temperature, dim=-1),
+            log_target=True,
+            reduction="sum",
+        )
+        * (temperature**2)
+        / num_tokens
+    )
 class SparseTrainer(Trainer):
     def __init__(self, model= None, args= None, data_collator= None, train_dataset= None, eval_dataset= None, 
             tokenizer= None, model_init= None, compute_metrics= None, callbacks= None, optimizers= (None, None),
-            preprocess_logits_for_metrics= None
+            preprocess_logits_for_metrics= None, teacher= None
             ):
         super().__init__(model, args, data_collator, train_dataset, eval_dataset, tokenizer, model_init, compute_metrics, callbacks, 
                                 optimizers, preprocess_logits_for_metrics)
         self.counter = 0
-
+        self.teacher = teacher
     def training_step(self, model, inputs):
         """
         Perform a training step on a batch of inputs.
@@ -101,15 +114,16 @@ class SparseTrainer(Trainer):
 
         if self.args.n_gpu > 1:
             loss = loss.mean()  # mean() to average on multi-gpu parallel training
-
-        if self.do_grad_scaling: ## False 
-            self.scaler.scale(loss).backward()
-        elif self.use_apex:   ## False 
-            with amp.scale_loss(loss, self.optimizer) as scaled_loss:
-                scaled_loss.backward()
-        else:
-            self.accelerator.backward(loss)
-            # pass 
+        
+        self.accelerator.backward(loss)
+        # if super().do_grad_scaling: ## False 
+        #     self.scaler.scale(loss).backward()
+        # elif super().use_apex:   ## False 
+        #     with amp.scale_loss(loss, self.optimizer) as scaled_loss:
+        #         scaled_loss.backward()
+        # else:
+        #     self.accelerator.backward(loss)
+        #     # pass 
 
         mask_grad(model)   ### mask the gradients
 
@@ -132,7 +146,6 @@ class SparseTrainer(Trainer):
             labels = inputs.pop("labels")
         else:
             labels = None
-
         outputs = model(**inputs)
         # Save past state if it exists
         # TODO: this needs to be fixed and made cleaner later.
@@ -156,5 +169,42 @@ class SparseTrainer(Trainer):
                 )
             # We don't use .loss here since the model may return tuples instead of ModelOutput.
             loss = outputs["loss"] if isinstance(outputs, dict) else outputs[0]
+        if self.args.loss_type == "SquareHead":
+            with torch.no_grad():
+                teacher_outputs = self.teacher(**inputs)
+            loss_gen_tokens = inputs['labels'] != -100
+            student_logits = outputs.logits[loss_gen_tokens]
+            teacher_logits = teacher_outputs.logits[loss_gen_tokens]
+            squarehead_loss = torch.tensor(0.0, device=outputs.logits.device, dtype=outputs.logits.dtype)
+            layerwise_losses = []
+            for i in range(1, len(outputs.hidden_states)):
+                useful_tokens = inputs['attention_mask'] == 1
+                student_states = outputs.hidden_states[i][useful_tokens]
+                teacher_states = teacher_outputs.hidden_states[i][useful_tokens]
+                layerwise_losses.append((student_states - teacher_states).pow(2).mean() / (teacher_states.pow(2).mean() + torch.finfo(outputs.logits.dtype).eps))
+
+            squarehead_loss = sum(layerwise_losses)
+            # print(squarehead_loss)
+            # useful_tokens = inputs['attention_mask'] == 1
+            # eps = torch.finfo(outputs.logits.dtype).eps  
+
+            # student_states = [s[useful_tokens] for s in outputs.hidden_states[1:]]
+            # teacher_states = [t[useful_tokens] for t in teacher_outputs.hidden_states[1:]]
+            
+            # teacher_norm = [torch.max(t.pow(2).mean(), eps) for t in teacher_states]
+            # layerwise_losses = [(s - t).pow(2).mean() / tn for s, t, tn in zip(student_states, teacher_states, teacher_norm)]
+            # squarehead_loss = sum(layerwise_losses)
+            # print(squarehead_loss)
+            loss += squarehead_loss
+        elif self.args.loss_type == "KL_div":
+            with torch.no_grad():
+                teacher_outputs = self.teacher(**inputs)
+            loss_gen_tokens = inputs['labels'] != -100
+            student_logits = outputs.logits[loss_gen_tokens]
+            teacher_logits = teacher_outputs[loss_gen_tokens]
+
+            kl_loss = kldiv_loss(student_logits, teacher_logits)
+            loss += kl_loss
+        
 
         return (loss, outputs) if return_outputs else loss

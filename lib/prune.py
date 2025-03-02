@@ -126,7 +126,6 @@ def prune_magnitude(args, model, tokenizer, device=torch.device("cuda:0"), prune
             W[W_mask] = 0
 
 def prune_wanda(args, model, tokenizer, device=torch.device("cuda:0"), prune_n=0, prune_m=0):
-    # pdb.set_trace()
     use_cache = model.config.use_cache 
     model.config.use_cache = False 
 

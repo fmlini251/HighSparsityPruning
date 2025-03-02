@@ -372,7 +372,7 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, torch_dtype=torch.float16, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto")
 
     ############################################################################################
-    # model = prepare_model_for_int8_training(model)
+    # model = prepare_model_for_kbit_training(model)
     config = LoraConfig(
         r=model_args.lora_r,
         lora_alpha=model_args.lora_alpha,

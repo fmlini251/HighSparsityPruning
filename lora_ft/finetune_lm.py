@@ -57,7 +57,7 @@ from peft import (
     LoraConfig,
     get_peft_model,
     get_peft_model_state_dict,
-    prepare_model_for_int8_training,
+    # prepare_model_for_int8_training,
     set_peft_model_state_dict,
 )
 
@@ -316,9 +316,10 @@ def main():
     #
     # In distributed training, the load_dataset function guarantee that only one local process can concurrently
     # download the dataset.
-    raw_datasets = load_dataset(
-        'allenai/c4', 'allenai--c4', data_files={'train': 'en/c4-train.00000-of-01024.json.gz', 'validation': 'en/c4-validation.00000-of-00008.json.gz'}
-    )
+    # raw_datasets = load_dataset(
+    #     'allenai/c4', data_files={'train': 'en/c4-train.00000-of-01024.json.gz', 'validation': 'en/c4-validation.00000-of-00008.json.gz'}
+    # )
+    raw_datasets = load_dataset(data_args.dataset_name)
 
     if "validation" not in raw_datasets.keys():
         raw_datasets["validation"] = load_dataset(
@@ -343,7 +344,6 @@ def main():
     # Distributed training:
     # The .from_pretrained methods guarantee that only one local process can concurrently
     # download model & vocab.
-
     config_kwargs = {
         "cache_dir": model_args.cache_dir,
         "revision": model_args.model_revision,
@@ -358,25 +358,26 @@ def main():
         "revision": model_args.model_revision,
         "use_auth_token": True if model_args.use_auth_token else None,
     }
-    # tokenizer = AutoTokenizer.from_pretrained(model_args.config_name, use_fast=False)
+    tokenizer = AutoTokenizer.from_pretrained(model_args.config_name, use_fast=False)
 
-    ## we use the tokenizer from vicuna
-    if "decapoda-research" in model_args.config_name:
-        tokenizer = AutoTokenizer.from_pretrained(
-            "lmsys/vicuna-13b-delta-v0",
-            cache_dir=model_args.cache_dir,
-            padding_side="right",
-            use_fast=True,
-        )
+    # ## we use the tokenizer from vicuna
+    # if "decapoda-research" in model_args.config_name:
+    #     tokenizer = AutoTokenizer.from_pretrained(
+    #         "lmsys/vicuna-13b-delta-v0",
+    #         cache_dir=model_args.cache_dir,
+    #         padding_side="right",
+    #         use_fast=True,
+    #     )
 
     model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, torch_dtype=torch.float16, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto")
 
     ############################################################################################
-    model = prepare_model_for_int8_training(model)
+    # model = prepare_model_for_int8_training(model)
     config = LoraConfig(
         r=model_args.lora_r,
         lora_alpha=model_args.lora_alpha,
-        target_modules=["q_proj","v_proj"],
+        target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "down_proj", "up_proj"],
+        # target_modules=["q_proj","v_proj"],
         lora_dropout=model_args.lora_dropout,
         bias="none",
         task_type="CAUSAL_LM",
@@ -521,15 +522,30 @@ def main():
     ################################################################################################################
     batch_size = 128
     training_args.gradient_accumulation_steps = batch_size // training_args.per_device_train_batch_size
-    training_args.warmup_steps = 5
-    training_args.fp16 = True
-    training_args.logging_steps = 10
+    # training_args.fp16 = True
+    # training_args.bf16 = True
     training_args.optim = "adamw_torch"
+    training_args.lr_scheduler_type="linear"
+    training_args.warmup_steps = 5
+    training_args.weight_decay = 0
+    training_args.adam_beta1 = 0.9
+    training_args.adam_beta2 = 0.999
+    training_args.epsilon = 1e-8
+    training_args.logging_first_step = True
+    training_args.log_level = "info"
+    training_args.logging_strategy = "steps"
+    training_args.logging_steps = 1
+    training_args.eval_strategy = "steps"
+    training_args.eval_steps = 1
+    training_args.per_device_eval_batch_size = 1
     training_args.save_strategy = "steps"
-    training_args.eval_steps = 10
-    training_args.save_steps = 50
+    training_args.save_steps = 5
     training_args.save_total_limit = 15
+    training_args.load_best_model_at_end = True
+    training_args.metric_for_best_model = "eval_loss"
+    training_args.greater_is_better = False
     training_args.group_by_length = False
+    training_args.run_name = f"RANK-{model_args.lora_r}-ALPHA-{model_args.lora_alpha}-lr-{training_args.learning_rate}"
     ################################################################################################################
 
     # Initialize our Trainer
@@ -550,12 +566,12 @@ def main():
     ############## code imported from alpaca-lora ###################
     model.config.use_cache = False
 
-    old_state_dict = model.state_dict
-    model.state_dict = (
-        lambda self, *_, **__: get_peft_model_state_dict(
-            self, old_state_dict()
-        )
-    ).__get__(model, type(model))
+    # old_state_dict = model.state_dict
+    # model.state_dict = (
+    #     lambda self, *_, **__: get_peft_model_state_dict(
+    #         self, old_state_dict()
+    #     )
+    # ).__get__(model, type(model))
 
     if torch.__version__ >= "2" and sys.platform != "win32":
         model = torch.compile(model)
@@ -590,7 +606,6 @@ def main():
     # Evaluation
     if training_args.do_eval:
         logger.info("*** Evaluate ***")
-
         metrics = trainer.evaluate()
 
         max_eval_samples = data_args.max_eval_samples if data_args.max_eval_samples is not None else len(eval_dataset)
@@ -617,6 +632,10 @@ def main():
         trainer.push_to_hub(**kwargs)
     else:
         trainer.create_model_card(**kwargs)
+
+    model = model.merge_and_unload()
+    model.save_pretrained(f"{training_args.output_dir}-merged")
+    tokenizer.save_pretrained(f"{training_args.output_dir}-merged")
 
 
 def _mp_fn(index):

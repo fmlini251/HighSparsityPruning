@@ -52,6 +52,7 @@ from transformers.testing_utils import CaptureLogger
 from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
+from HSP.HighSparsityPruning.lora_ft.sparse_trainer_lora import SparseTrainer
 
 from peft import (
     LoraConfig,
@@ -80,6 +81,14 @@ class ModelArguments:
     """
 
     model_name_or_path: Optional[str] = field(
+        default=None,
+        metadata={
+            "help": (
+                "The model checkpoint for weights initialization.Don't set if you want to train a model from scratch."
+            )
+        },
+    )
+    teacher_name_or_path: Optional[str] = field(
         default=None,
         metadata={
             "help": (
@@ -370,7 +379,12 @@ def main():
     #     )
 
     model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, torch_dtype=torch.float16, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto")
-
+    if model_args.teacher_name_or_path is not None:
+        model.config.output_hidden_states=True
+        teacher = AutoModelForCausalLM.from_pretrained(model_args.teacher_name_or_path, torch_dtype=torch.float16, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto") if model_args.teacher_name_or_path else None
+        teacher.config.output_hidden_states=True
+        teacher.eval()
+    
     ############################################################################################
     # model = prepare_model_for_kbit_training(model)
     config = LoraConfig(
@@ -545,11 +559,12 @@ def main():
     training_args.metric_for_best_model = "eval_loss"
     training_args.greater_is_better = False
     training_args.group_by_length = False
-    training_args.run_name = f"RANK-{model_args.lora_r}-ALPHA-{model_args.lora_alpha}-lr-{training_args.learning_rate}"
     ################################################################################################################
-
     # Initialize our Trainer
-    trainer = Trainer(
+    if model_args.teacher_name_or_path is not None:
+        training_args.run_name = f"RANK-{model_args.lora_r}-ALPHA-{model_args.lora_alpha}-lr-{training_args.learning_rate}-SquareHead"
+        training_args.loss_type = "SquareHead"
+        trainer = SparseTrainer(
         model=model,
         args=training_args,
         train_dataset=train_dataset if training_args.do_train else None,
@@ -558,10 +573,22 @@ def main():
         # Data collator will default to DataCollatorWithPadding, so we change it.
         data_collator=default_data_collator,
         compute_metrics=compute_metrics if training_args.do_eval and not is_torch_tpu_available() else None,
-        preprocess_logits_for_metrics=preprocess_logits_for_metrics
-        if training_args.do_eval and not is_torch_tpu_available()
-        else None,
-    )
+        preprocess_logits_for_metrics=preprocess_logits_for_metrics if training_args.do_eval and not is_torch_tpu_available() else None,
+        teacher=teacher,
+        )
+    else:
+        training_args.run_name = f"RANK-{model_args.lora_r}-ALPHA-{model_args.lora_alpha}-lr-{training_args.learning_rate}"
+        trainer = Trainer(
+            model=model,
+            args=training_args,
+            train_dataset=train_dataset if training_args.do_train else None,
+            eval_dataset=eval_dataset if training_args.do_eval else None,
+            tokenizer=tokenizer,
+            # Data collator will default to DataCollatorWithPadding, so we change it.
+            data_collator=default_data_collator,
+            compute_metrics=compute_metrics if training_args.do_eval and not is_torch_tpu_available() else None,
+            preprocess_logits_for_metrics=preprocess_logits_for_metrics if training_args.do_eval and not is_torch_tpu_available() else None,
+        )
 
     ############## code imported from alpaca-lora ###################
     model.config.use_cache = False
@@ -628,10 +655,10 @@ def main():
         else:
             kwargs["dataset"] = data_args.dataset_name
 
-    if training_args.push_to_hub:
-        trainer.push_to_hub(**kwargs)
-    else:
-        trainer.create_model_card(**kwargs)
+    # if training_args.push_to_hub:
+    #     trainer.push_to_hub(**kwargs)
+    # else:
+    #     trainer.create_model_card(**kwargs)
 
     model = model.merge_and_unload()
     model.save_pretrained(f"{training_args.output_dir}-merged")

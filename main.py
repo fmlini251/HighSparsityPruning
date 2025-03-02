@@ -15,16 +15,15 @@ print('# of gpus: ', torch.cuda.device_count())
 
 def get_llm(model_name, cache_dir="llm_weights"):
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, 
-        torch_dtype=torch.float16, 
-        cache_dir=cache_dir, 
-        low_cpu_mem_usage=True, 
-        device_map="auto"
+        model_name
+        # torch_dtype=torch.float16, 
+        # cache_dir=cache_dir, 
+        # low_cpu_mem_usage=True, 
+        # device_map="auto"
     )
-    model.seqlen = model.config.max_position_embeddings 
-    if model.seqlen >= 128*1024:
-        model.seqlen = 2048
-        # model.config.rope_scaling['original_max_position_embeddings']
+
+    # model.seqlen = model.config.max_position_embeddings 
+    model.seqlen = 2048
     return model
 
 def main():
@@ -85,12 +84,12 @@ def main():
     # ppl_test = eval_ppl(args, model, tokenizer, device)
     # print(f"wikitext perplexity {ppl_test}")
 
-    # if not os.path.exists(args.save):
-    #     os.makedirs(args.save)
-    # save_filepath = os.path.join(args.save, f"log_{args.prune_method}.txt")
-    # with open(save_filepath, "w") as f:
-    #     print("method\tactual_sparsity\tppl_test", file=f, flush=True)
-    #     print(f"{args.prune_method}\t{sparsity_ratio:.4f}\t{ppl_test:.4f}", file=f, flush=True)
+    if not os.path.exists(args.save):
+        os.makedirs(args.save)
+    save_filepath = os.path.join(args.save, f"log_{args.prune_method}.txt")
+    with open(save_filepath, "a") as f:
+        # print("method\tactual_sparsity\tppl_test", file=f, flush=True)
+        print(f"{args.prune_method}\t{sparsity_ratio:.4f}\t{ppl_test:.4f}", file=f, flush=True)
 
     # if args.eval_zero_shot:
     #     accelerate=False

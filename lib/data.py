@@ -4,6 +4,7 @@ import numpy as np
 import random
 import torch
 from datasets import load_dataset
+from tqdm import tqdm
 
 # Set seed for reproducibility
 def set_seed(seed):
@@ -18,14 +19,13 @@ class TokenizerWrapper:
 # Load and process wikitext2 dataset
 def get_wikitext2(nsamples, seed, seqlen, tokenizer):
     # Load train and test datasets
-    traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train')
-    testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test')
-
+    traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train', cache_dir="~/cache")
+    testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test', cache_dir="~/cache")
     # Encode datasets
-    trainenc = tokenizer(" ".join(traindata['text']), return_tensors='pt')
     testenc = tokenizer("\n\n".join(testdata['text']), return_tensors='pt')
-
+    trainenc = tokenizer(" ".join(traindata['text']), return_tensors='pt')
     # Generate samples from training set
+
     random.seed(seed)
     trainloader = []
     for _ in range(nsamples):
@@ -35,6 +35,7 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer):
         tar = inp.clone()
         tar[:, :-1] = -100
         trainloader.append((inp, tar))
+    
     return trainloader, testenc
 
 # Load and process c4 dataset
@@ -48,7 +49,7 @@ def get_c4(nsamples, seed, seqlen, tokenizer):
     # Generate samples from training set
     random.seed(seed)
     trainloader = []
-    for _ in range(nsamples):
+    for _ in tqdm(range(nsamples)):
         while True:
             i = random.randint(0, len(traindata) - 1)
             trainenc = tokenizer(traindata[i]['text'], return_tensors='pt')
@@ -65,6 +66,7 @@ def get_c4(nsamples, seed, seqlen, tokenizer):
     valenc = tokenizer(' '.join(valdata[:1100]['text']), return_tensors='pt')
     valenc = valenc.input_ids[:, :(256 * seqlen)]
     valenc = TokenizerWrapper(valenc)
+    print('end!!!')
     return trainloader, valenc
 
 # Function to select the appropriate loader based on dataset name

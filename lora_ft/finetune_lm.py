@@ -52,7 +52,7 @@ from transformers.testing_utils import CaptureLogger
 from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
-from HSP.HighSparsityPruning.lora_ft.sparse_trainer_lora import SparseTrainer
+from sparse_trainer_lora import SparseTrainer
 
 from peft import (
     LoraConfig,
@@ -536,7 +536,7 @@ def main():
     ################################################################################################################
     batch_size = 128
     training_args.gradient_accumulation_steps = batch_size // training_args.per_device_train_batch_size
-    # training_args.fp16 = True
+    training_args.fp16 = True
     # training_args.bf16 = True
     training_args.optim = "adamw_torch"
     training_args.lr_scheduler_type="linear"
@@ -603,6 +603,13 @@ def main():
     if torch.__version__ >= "2" and sys.platform != "win32":
         model = torch.compile(model)
     ############## code imported from alpaca-lora ###################
+    
+
+    # # Save Training Args
+    # import json
+    # with open('training_args.json', 'w') as fout:
+    #     fout.write(training_args.to_json_string())
+    
 
     # Training
     if training_args.do_train:

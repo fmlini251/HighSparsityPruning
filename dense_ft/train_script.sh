@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CUDA_VISIBLE_DEVICES=3 python finetune_dense_lm.py \
+CUDA_VISIBLE_DEVICES=2 python finetune_dense_lm.py \
     --model_name_or_path /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B \
     --config_name meta-llama/Llama-3.2-1B \
     --dataset_name tatsu-lab/alpaca \
@@ -11,6 +11,7 @@ CUDA_VISIBLE_DEVICES=3 python finetune_dense_lm.py \
     --per_device_eval_batch_size 1 \
     --do_train \
     --do_eval \
+    --loss_type CrossEntropy \
     --learning_rate 1e-4 \
     --overwrite_output_dir \
-    --output_dir /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_dense_ft
+    --output_dir /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_CrossEntropy

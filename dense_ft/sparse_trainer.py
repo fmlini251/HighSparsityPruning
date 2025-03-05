@@ -196,7 +196,7 @@ class SparseTrainer(Trainer):
             # squarehead_loss = sum(layerwise_losses)
             # print(squarehead_loss)
             loss += squarehead_loss
-        elif self.args.loss_type == "KL_div":
+        elif self.args.loss_type == "KLDiv":
             with torch.no_grad():
                 teacher_outputs = self.teacher(**inputs)
             loss_gen_tokens = inputs['labels'] != -100

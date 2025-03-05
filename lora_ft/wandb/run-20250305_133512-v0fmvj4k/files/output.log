@@ -1,0 +1,1187 @@
+  1%|█▋                                                                                                                             | 1/76 [01:16<1:35:00, 76.01s/it][INFO|trainer.py:3819] 2025-03-05 13:36:29,038 >>
+{'loss': 2.8975, 'grad_norm': 3.726752519607544, 'learning_rate': 2e-05, 'epoch': 0.05}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 13:36:29,038 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:36:29,038 >>   Batch size = 1
+  3%|███▎                                                                                                                           | 2/76 [03:01<1:55:16, 93.47s/it][INFO|trainer.py:3819] 2025-03-05 13:38:14,737 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.8749070167541504, 'eval_accuracy': 0.5107553146225002, 'eval_runtime': 30.0543, 'eval_samples_per_second': 4.126, 'eval_steps_per_second': 4.126, 'epoch': 0.05}
+{'loss': 2.892, 'grad_norm': 3.742976188659668, 'learning_rate': 4e-05, 'epoch': 0.1}
+[INFO|trainer.py:3821] 2025-03-05 13:38:14,737 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:38:14,737 >>   Batch size = 1
+  4%|█████                                                                                                                          | 3/76 [04:47<2:00:42, 99.22s/it][INFO|trainer.py:3819] 2025-03-05 13:40:00,793 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.8523170948028564, 'eval_accuracy': 0.5129851710607183, 'eval_runtime': 30.2043, 'eval_samples_per_second': 4.105, 'eval_steps_per_second': 4.105, 'epoch': 0.1}
+{'loss': 2.9105, 'grad_norm': 3.829559564590454, 'learning_rate': 6e-05, 'epoch': 0.16}
+[INFO|trainer.py:3821] 2025-03-05 13:40:00,793 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:40:00,793 >>   Batch size = 1
+  5%|██████▋                                                                                                                        | 4/76 [06:12<1:52:25, 93.69s/it][INFO|trainer.py:3819] 2025-03-05 13:41:26,000 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.77290415763855, 'eval_accuracy': 0.5208290653513403, 'eval_runtime': 30.1394, 'eval_samples_per_second': 4.114, 'eval_steps_per_second': 4.114, 'epoch': 0.16}
+{'loss': 2.7876, 'grad_norm': 3.483764171600342, 'learning_rate': 8e-05, 'epoch': 0.21}
+[INFO|trainer.py:3821] 2025-03-05 13:41:26,000 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:41:26,000 >>   Batch size = 1
+  7%|████████▎                                                                                                                      | 5/76 [07:49<1:51:54, 94.57s/it][INFO|trainer.py:3819] 2025-03-05 13:43:02,127 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.6458966732025146, 'eval_accuracy': 0.5333296563026931, 'eval_runtime': 19.0394, 'eval_samples_per_second': 6.513, 'eval_steps_per_second': 6.513, 'epoch': 0.21}
+{'loss': 2.6648, 'grad_norm': 3.0679409503936768, 'learning_rate': 0.0001, 'epoch': 0.26}
+[INFO|trainer.py:3821] 2025-03-05 13:43:02,127 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:43:02,127 >>   Batch size = 1
+  7%|████████▎                                                                                                                      | 5/76 [08:19<1:51:54, 94.57s/it][INFO|trainer.py:3503] 2025-03-05 13:43:32,583 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-5
+[INFO|configuration_utils.py:731] 2025-03-05 13:43:32,589 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.486170530319214, 'eval_accuracy': 0.5490529019651103, 'eval_runtime': 30.455, 'eval_samples_per_second': 4.072, 'eval_steps_per_second': 4.072, 'epoch': 0.26}
+[INFO|configuration_utils.py:800] 2025-03-05 13:43:32,590 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 13:43:32,629 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-5/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 13:43:32,629 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-5/special_tokens_map.json
+  8%|█████████████▋                                                                                                                                                               | 6/76 [09:36<1:55:35, 99.08s/it][INFO|trainer.py:3819] 2025-03-05 13:44:49,975 >>
+{'loss': 2.4906, 'grad_norm': 2.354506731033325, 'learning_rate': 9.859154929577466e-05, 'epoch': 0.31}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 13:44:49,975 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:44:49,975 >>   Batch size = 1
+  9%|███████████████▊                                                                                                                                                            | 7/76 [11:24<1:57:14, 101.95s/it][INFO|trainer.py:3819] 2025-03-05 13:46:37,820 >>
+***** Running Evaluation *****
+{'eval_loss': 2.3307058811187744, 'eval_accuracy': 0.5654734702239311, 'eval_runtime': 30.6758, 'eval_samples_per_second': 4.042, 'eval_steps_per_second': 4.042, 'epoch': 0.31}
+{'loss': 2.3752, 'grad_norm': 1.6470177173614502, 'learning_rate': 9.718309859154931e-05, 'epoch': 0.36}
+[INFO|trainer.py:3821] 2025-03-05 13:46:37,820 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:46:37,820 >>   Batch size = 1
+ 11%|██████████████████                                                                                                                                                          | 8/76 [13:12<1:57:32, 103.72s/it][INFO|trainer.py:3819] 2025-03-05 13:48:25,329 >>
+***** Running Evaluation *****
+{'eval_loss': 2.231475830078125, 'eval_accuracy': 0.5768670123075469, 'eval_runtime': 30.5484, 'eval_samples_per_second': 4.059, 'eval_steps_per_second': 4.059, 'epoch': 0.36}
+{'loss': 2.2733, 'grad_norm': 1.2499399185180664, 'learning_rate': 9.577464788732394e-05, 'epoch': 0.42}
+[INFO|trainer.py:3821] 2025-03-05 13:48:25,329 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:48:25,329 >>   Batch size = 1
+ 12%|████████████████████▍                                                                                                                                                        | 9/76 [14:20<1:43:25, 92.61s/it][INFO|trainer.py:3819] 2025-03-05 13:49:33,527 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.167886972427368, 'eval_accuracy': 0.5845218021652457, 'eval_runtime': 29.0534, 'eval_samples_per_second': 4.268, 'eval_steps_per_second': 4.268, 'epoch': 0.42}
+{'loss': 2.2101, 'grad_norm': 1.0396472215652466, 'learning_rate': 9.43661971830986e-05, 'epoch': 0.47}
+[INFO|trainer.py:3821] 2025-03-05 13:49:33,527 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:49:33,527 >>   Batch size = 1
+ 13%|██████████████████████▋                                                                                                                                                     | 10/76 [15:15<1:28:59, 80.91s/it][INFO|trainer.py:3819] 2025-03-05 13:50:28,220 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.1265366077423096, 'eval_accuracy': 0.5900215894227587, 'eval_runtime': 15.6108, 'eval_samples_per_second': 7.943, 'eval_steps_per_second': 7.943, 'epoch': 0.47}
+{'loss': 2.1396, 'grad_norm': 0.9925281405448914, 'learning_rate': 9.295774647887325e-05, 'epoch': 0.52}
+[INFO|trainer.py:3821] 2025-03-05 13:50:28,221 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:50:28,221 >>   Batch size = 1
+ 13%|██████████████████████▋                                                                                                                                                     | 10/76 [15:30<1:28:59, 80.91s/it][INFO|trainer.py:3503] 2025-03-05 13:50:43,855 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-10
+[INFO|configuration_utils.py:731] 2025-03-05 13:50:43,871 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json                                       
+{'eval_loss': 2.100123643875122, 'eval_accuracy': 0.5947807176513229, 'eval_runtime': 15.6326, 'eval_samples_per_second': 7.932, 'eval_steps_per_second': 7.932, 'epoch': 0.52}
+[INFO|configuration_utils.py:800] 2025-03-05 13:50:43,872 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 13:50:43,903 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-10/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 13:50:43,903 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-10/special_tokens_map.json
+ 14%|████████████████████████▉                                                                                                                                                   | 11/76 [16:10<1:19:01, 72.95s/it][INFO|trainer.py:3819] 2025-03-05 13:51:23,123 >>
+{'loss': 2.1507, 'grad_norm': 0.9761777520179749, 'learning_rate': 9.15492957746479e-05, 'epoch': 0.57}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 13:51:23,123 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:51:23,123 >>   Batch size = 1
+ 16%|███████████████████████████▏                                                                                                                                                | 12/76 [17:04<1:11:51, 67.37s/it][INFO|trainer.py:3819] 2025-03-05 13:52:17,730 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.0843610763549805, 'eval_accuracy': 0.5982515719305986, 'eval_runtime': 15.6135, 'eval_samples_per_second': 7.942, 'eval_steps_per_second': 7.942, 'epoch': 0.57}
+{'loss': 2.1109, 'grad_norm': 0.96149080991745, 'learning_rate': 9.014084507042254e-05, 'epoch': 0.62}
+[INFO|trainer.py:3821] 2025-03-05 13:52:17,730 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:52:17,730 >>   Batch size = 1
+ 17%|█████████████████████████████▍                                                                                                                                              | 13/76 [17:59<1:06:40, 63.51s/it][INFO|trainer.py:3819] 2025-03-05 13:53:12,344 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.077522039413452, 'eval_accuracy': 0.6007375072884, 'eval_runtime': 15.6316, 'eval_samples_per_second': 7.933, 'eval_steps_per_second': 7.933, 'epoch': 0.62}
+{'loss': 2.1148, 'grad_norm': 0.9882040023803711, 'learning_rate': 8.873239436619719e-05, 'epoch': 0.68}
+[INFO|trainer.py:3821] 2025-03-05 13:53:12,344 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:53:12,344 >>   Batch size = 1
+ 18%|███████████████████████████████▋                                                                                                                                            | 14/76 [18:53<1:02:50, 60.82s/it][INFO|trainer.py:3819] 2025-03-05 13:54:06,963 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.0786314010620117, 'eval_accuracy': 0.602010022534945, 'eval_runtime': 15.6153, 'eval_samples_per_second': 7.941, 'eval_steps_per_second': 7.941, 'epoch': 0.68}
+{'loss': 2.1033, 'grad_norm': 0.9927431344985962, 'learning_rate': 8.732394366197182e-05, 'epoch': 0.73}
+[INFO|trainer.py:3821] 2025-03-05 13:54:06,963 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:54:06,963 >>   Batch size = 1
+ 20%|██████████████████████████████████▎                                                                                                                                           | 15/76 [19:48<59:57, 58.97s/it][INFO|trainer.py:3819] 2025-03-05 13:55:01,644 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.087207317352295, 'eval_accuracy': 0.6017578832910475, 'eval_runtime': 15.6445, 'eval_samples_per_second': 7.926, 'eval_steps_per_second': 7.926, 'epoch': 0.73}
+{'loss': 2.1191, 'grad_norm': 0.9829279780387878, 'learning_rate': 8.591549295774647e-05, 'epoch': 0.78}
+[INFO|trainer.py:3821] 2025-03-05 13:55:01,644 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:55:01,644 >>   Batch size = 1
+ 20%|██████████████████████████████████▎                                                                                                                                           | 15/76 [20:04<59:57, 58.97s/it][INFO|trainer.py:3503] 2025-03-05 13:55:17,290 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-15
+[INFO|configuration_utils.py:731] 2025-03-05 13:55:17,306 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json                                       
+{'eval_loss': 2.1021997928619385, 'eval_accuracy': 0.6006941708558552, 'eval_runtime': 15.6447, 'eval_samples_per_second': 7.926, 'eval_steps_per_second': 7.926, 'epoch': 0.78}
+[INFO|configuration_utils.py:800] 2025-03-05 13:55:17,307 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 13:55:17,337 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-15/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 13:55:17,338 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-15/special_tokens_map.json
+ 21%|████████████████████████████████████▋                                                                                                                                         | 16/76 [20:43<57:44, 57.75s/it][INFO|trainer.py:3819] 2025-03-05 13:55:56,546 >>
+{'loss': 2.119, 'grad_norm': 0.943045437335968, 'learning_rate': 8.450704225352113e-05, 'epoch': 0.83}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 13:55:56,546 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:55:56,546 >>   Batch size = 1
+ 22%|██████████████████████████████████████▉                                                                                                                                       | 17/76 [21:38<55:51, 56.81s/it][INFO|trainer.py:3819] 2025-03-05 13:56:51,180 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.121041774749756, 'eval_accuracy': 0.5990631451218935, 'eval_runtime': 15.616, 'eval_samples_per_second': 7.941, 'eval_steps_per_second': 7.941, 'epoch': 0.83}
+{'loss': 2.1428, 'grad_norm': 0.9160855412483215, 'learning_rate': 8.309859154929578e-05, 'epoch': 0.88}
+[INFO|trainer.py:3821] 2025-03-05 13:56:51,180 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:56:51,180 >>   Batch size = 1
+ 24%|█████████████████████████████████████████▏                                                                                                                                    | 18/76 [22:32<54:17, 56.16s/it][INFO|trainer.py:3819] 2025-03-05 13:57:45,822 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.1396849155426025, 'eval_accuracy': 0.5976015254424256, 'eval_runtime': 15.596, 'eval_samples_per_second': 7.951, 'eval_steps_per_second': 7.951, 'epoch': 0.88}
+{'loss': 2.1721, 'grad_norm': 0.9306055307388306, 'learning_rate': 8.169014084507043e-05, 'epoch': 0.94}
+[INFO|trainer.py:3821] 2025-03-05 13:57:45,822 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:57:45,822 >>   Batch size = 1
+ 25%|███████████████████████████████████████████▌                                                                                                                                  | 19/76 [23:27<52:54, 55.70s/it][INFO|trainer.py:3819] 2025-03-05 13:58:40,444 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.1549901962280273, 'eval_accuracy': 0.5966126668452653, 'eval_runtime': 15.6102, 'eval_samples_per_second': 7.944, 'eval_steps_per_second': 7.944, 'epoch': 0.94}
+{'loss': 2.1774, 'grad_norm': 1.0083184242248535, 'learning_rate': 8.028169014084508e-05, 'epoch': 0.99}
+[INFO|trainer.py:3821] 2025-03-05 13:58:40,445 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:58:40,445 >>   Batch size = 1
+ 26%|█████████████████████████████████████████████▊                                                                                                                                | 20/76 [24:22<51:40, 55.37s/it][INFO|trainer.py:3819] 2025-03-05 13:59:35,055 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.1673922538757324, 'eval_accuracy': 0.5955647131128166, 'eval_runtime': 15.6319, 'eval_samples_per_second': 7.932, 'eval_steps_per_second': 7.932, 'epoch': 0.99}
+{'loss': 2.201, 'grad_norm': 1.1725274324417114, 'learning_rate': 7.887323943661972e-05, 'epoch': 1.04}
+[INFO|trainer.py:3821] 2025-03-05 13:59:35,055 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 13:59:35,055 >>   Batch size = 1
+ 26%|█████████████████████████████████████████████▊                                                                                                                                | 20/76 [24:37<51:40, 55.37s/it][INFO|trainer.py:3503] 2025-03-05 13:59:50,663 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-20
+[INFO|configuration_utils.py:731] 2025-03-05 13:59:50,679 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json                                       
+{'eval_loss': 2.1802196502685547, 'eval_accuracy': 0.5947334415430922, 'eval_runtime': 15.6071, 'eval_samples_per_second': 7.945, 'eval_steps_per_second': 7.945, 'epoch': 1.04}
+[INFO|configuration_utils.py:800] 2025-03-05 13:59:50,680 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 13:59:50,710 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-20/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 13:59:50,711 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-20/special_tokens_map.json
+ 28%|████████████████████████████████████████████████                                                                                                                              | 21/76 [25:16<50:36, 55.21s/it][INFO|trainer.py:3819] 2025-03-05 14:00:29,898 >>
+{'loss': 2.2004, 'grad_norm': 1.3391131162643433, 'learning_rate': 7.746478873239437e-05, 'epoch': 1.09}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:00:29,899 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:00:29,899 >>   Batch size = 1
+ 29%|██████████████████████████████████████████████████▎                                                                                                                           | 22/76 [26:11<49:32, 55.05s/it][INFO|trainer.py:3819] 2025-03-05 14:01:24,562 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.196298599243164, 'eval_accuracy': 0.5937957987298486, 'eval_runtime': 15.6938, 'eval_samples_per_second': 7.901, 'eval_steps_per_second': 7.901, 'epoch': 1.09}
+{'loss': 2.2334, 'grad_norm': 1.405596375465393, 'learning_rate': 7.605633802816902e-05, 'epoch': 1.14}
+[INFO|trainer.py:3821] 2025-03-05 14:01:24,563 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:01:24,563 >>   Batch size = 1
+ 30%|████████████████████████████████████████████████████▋                                                                                                                         | 23/76 [27:06<48:30, 54.92s/it][INFO|trainer.py:3819] 2025-03-05 14:02:19,172 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.215608835220337, 'eval_accuracy': 0.592818759159746, 'eval_runtime': 15.5909, 'eval_samples_per_second': 7.953, 'eval_steps_per_second': 7.953, 'epoch': 1.14}
+{'loss': 2.2418, 'grad_norm': 1.2861847877502441, 'learning_rate': 7.464788732394367e-05, 'epoch': 1.2}
+[INFO|trainer.py:3821] 2025-03-05 14:02:19,172 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:02:19,172 >>   Batch size = 1
+ 32%|██████████████████████████████████████████████████████▉                                                                                                                       | 24/76 [28:00<47:30, 54.81s/it][INFO|trainer.py:3819] 2025-03-05 14:03:13,740 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.2349207401275635, 'eval_accuracy': 0.591814141859842, 'eval_runtime': 15.5917, 'eval_samples_per_second': 7.953, 'eval_steps_per_second': 7.953, 'epoch': 1.2}
+{'loss': 2.2571, 'grad_norm': 1.1971185207366943, 'learning_rate': 7.323943661971832e-05, 'epoch': 1.25}
+[INFO|trainer.py:3821] 2025-03-05 14:03:13,740 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:03:13,740 >>   Batch size = 1
+ 33%|█████████████████████████████████████████████████████████▏                                                                                                                    | 25/76 [28:55<46:32, 54.76s/it][INFO|trainer.py:3819] 2025-03-05 14:04:08,387 >>
+***** Running Evaluation *****                                                                                                                                                                                     
+{'eval_loss': 2.2482638359069824, 'eval_accuracy': 0.5912547079124446, 'eval_runtime': 15.6156, 'eval_samples_per_second': 7.941, 'eval_steps_per_second': 7.941, 'epoch': 1.25}
+{'loss': 2.288, 'grad_norm': 1.1812785863876343, 'learning_rate': 7.183098591549297e-05, 'epoch': 1.3}
+[INFO|trainer.py:3821] 2025-03-05 14:04:08,387 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:04:08,387 >>   Batch size = 1
+ 33%|██████████████████████████████████████████                                                                                      | 25/76 [29:10<46:32, 54.76s/it][INFO|trainer.py:3503] 2025-03-05 14:04:23,990 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-25
+[INFO|configuration_utils.py:731] 2025-03-05 14:04:24,006 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json                                       
+{'eval_loss': 2.2525765895843506, 'eval_accuracy': 0.5912310698583293, 'eval_runtime': 15.601, 'eval_samples_per_second': 7.948, 'eval_steps_per_second': 7.948, 'epoch': 1.3}
+[INFO|configuration_utils.py:800] 2025-03-05 14:04:24,007 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:04:24,038 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-25/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:04:24,038 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-25/special_tokens_map.json
+ 34%|███████████████████████████████████████████▊                                                                                    | 26/76 [29:50<45:39, 54.79s/it][INFO|trainer.py:3819] 2025-03-05 14:05:03,230 >>
+{'loss': 2.2851, 'grad_norm': 1.1831005811691284, 'learning_rate': 7.042253521126761e-05, 'epoch': 1.35}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:05:03,230 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:05:03,230 >>   Batch size = 1
+ 36%|█████████████████████████████████████████████▍                                                                                  | 27/76 [30:44<44:43, 54.76s/it][INFO|trainer.py:3819] 2025-03-05 14:05:57,921 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.248473882675171, 'eval_accuracy': 0.5913689585073357, 'eval_runtime': 15.6283, 'eval_samples_per_second': 7.934, 'eval_steps_per_second': 7.934, 'epoch': 1.35}
+{'loss': 2.3015, 'grad_norm': 1.151073932647705, 'learning_rate': 6.901408450704226e-05, 'epoch': 1.4}
+[INFO|trainer.py:3821] 2025-03-05 14:05:57,921 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:05:57,921 >>   Batch size = 1
+ 37%|███████████████████████████████████████████████▏                                                                                | 28/76 [31:39<43:47, 54.74s/it][INFO|trainer.py:3819] 2025-03-05 14:06:52,624 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.2386248111724854, 'eval_accuracy': 0.5917235293190665, 'eval_runtime': 15.6344, 'eval_samples_per_second': 7.931, 'eval_steps_per_second': 7.931, 'epoch': 1.4}
+{'loss': 2.2777, 'grad_norm': 1.0846432447433472, 'learning_rate': 6.76056338028169e-05, 'epoch': 1.46}
+[INFO|trainer.py:3821] 2025-03-05 14:06:52,624 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:06:52,624 >>   Batch size = 1
+ 38%|████████████████████████████████████████████████▊                                                                               | 29/76 [32:34<42:51, 54.72s/it][INFO|trainer.py:3819] 2025-03-05 14:07:47,296 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.2258856296539307, 'eval_accuracy': 0.5923775154829255, 'eval_runtime': 15.6261, 'eval_samples_per_second': 7.935, 'eval_steps_per_second': 7.935, 'epoch': 1.46}
+{'loss': 2.2831, 'grad_norm': 1.0278620719909668, 'learning_rate': 6.619718309859155e-05, 'epoch': 1.51}
+[INFO|trainer.py:3821] 2025-03-05 14:07:47,296 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:07:47,296 >>   Batch size = 1
+ 39%|██████████████████████████████████████████████████▌                                                                             | 30/76 [33:28<41:56, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:08:41,982 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.2122600078582764, 'eval_accuracy': 0.592972406511496, 'eval_runtime': 15.6271, 'eval_samples_per_second': 7.935, 'eval_steps_per_second': 7.935, 'epoch': 1.51}
+{'loss': 2.2199, 'grad_norm': 0.9735873937606812, 'learning_rate': 6.47887323943662e-05, 'epoch': 1.56}
+[INFO|trainer.py:3821] 2025-03-05 14:08:41,983 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:08:41,983 >>   Batch size = 1
+ 39%|██████████████████████████████████████████████████▌                                                                             | 30/76 [33:44<41:56, 54.71s/it][INFO|trainer.py:3503] 2025-03-05 14:08:57,599 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-30
+[INFO|configuration_utils.py:731] 2025-03-05 14:08:57,615 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.1988465785980225, 'eval_accuracy': 0.593626392675355, 'eval_runtime': 15.6158, 'eval_samples_per_second': 7.941, 'eval_steps_per_second': 7.941, 'epoch': 1.56}
+[INFO|configuration_utils.py:800] 2025-03-05 14:08:57,616 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:08:57,647 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-30/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:08:57,647 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-30/special_tokens_map.json
+ 41%|████████████████████████████████████████████████████▏                                                                           | 31/76 [34:23<41:04, 54.76s/it][INFO|trainer.py:3819] 2025-03-05 14:09:36,872 >>
+{'loss': 2.2155, 'grad_norm': 0.9510425925254822, 'learning_rate': 6.338028169014085e-05, 'epoch': 1.61}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:09:36,872 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:09:36,872 >>   Batch size = 1
+ 42%|█████████████████████████████████████████████████████▉                                                                          | 32/76 [35:18<40:09, 54.75s/it][INFO|trainer.py:3819] 2025-03-05 14:10:31,598 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.186070442199707, 'eval_accuracy': 0.5945522164615409, 'eval_runtime': 15.629, 'eval_samples_per_second': 7.934, 'eval_steps_per_second': 7.934, 'epoch': 1.61}
+{'loss': 2.2134, 'grad_norm': 0.9482705593109131, 'learning_rate': 6.197183098591549e-05, 'epoch': 1.66}
+[INFO|trainer.py:3821] 2025-03-05 14:10:31,598 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:10:31,598 >>   Batch size = 1
+ 43%|███████████████████████████████████████████████████████▌                                                                        | 33/76 [36:13<39:13, 54.73s/it][INFO|trainer.py:3819] 2025-03-05 14:11:26,263 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.1746010780334473, 'eval_accuracy': 0.5956395669508486, 'eval_runtime': 15.6325, 'eval_samples_per_second': 7.932, 'eval_steps_per_second': 7.932, 'epoch': 1.66}
+{'loss': 2.2316, 'grad_norm': 0.9598832726478577, 'learning_rate': 6.056338028169014e-05, 'epoch': 1.72}
+[INFO|trainer.py:3821] 2025-03-05 14:11:26,263 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:11:26,263 >>   Batch size = 1
+ 45%|█████████████████████████████████████████████████████████▎                                                                      | 34/76 [37:07<38:17, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:12:20,939 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.1655433177948, 'eval_accuracy': 0.5967269174401564, 'eval_runtime': 15.6279, 'eval_samples_per_second': 7.935, 'eval_steps_per_second': 7.935, 'epoch': 1.72}
+{'loss': 2.1963, 'grad_norm': 0.9829297065734863, 'learning_rate': 5.915492957746479e-05, 'epoch': 1.77}
+[INFO|trainer.py:3821] 2025-03-05 14:12:20,939 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:12:20,939 >>   Batch size = 1
+ 46%|██████████████████████████████████████████████████████████▉                                                                     | 35/76 [38:02<37:22, 54.70s/it][INFO|trainer.py:3819] 2025-03-05 14:13:15,610 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.1593329906463623, 'eval_accuracy': 0.5975384906314513, 'eval_runtime': 15.628, 'eval_samples_per_second': 7.934, 'eval_steps_per_second': 7.934, 'epoch': 1.77}
+{'loss': 2.2035, 'grad_norm': 1.0155761241912842, 'learning_rate': 5.774647887323944e-05, 'epoch': 1.82}
+[INFO|trainer.py:3821] 2025-03-05 14:13:15,610 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:13:15,610 >>   Batch size = 1
+ 46%|██████████████████████████████████████████████████████████▉                                                                     | 35/76 [38:18<37:22, 54.70s/it][INFO|trainer.py:3503] 2025-03-05 14:13:31,285 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-35
+[INFO|configuration_utils.py:731] 2025-03-05 14:13:31,302 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.1566519737243652, 'eval_accuracy': 0.5982515719305986, 'eval_runtime': 15.6736, 'eval_samples_per_second': 7.911, 'eval_steps_per_second': 7.911, 'epoch': 1.82}
+[INFO|configuration_utils.py:800] 2025-03-05 14:13:31,302 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:13:31,335 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-35/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:13:31,335 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-35/special_tokens_map.json
+ 47%|████████████████████████████████████████████████████████████▋                                                                   | 36/76 [38:57<36:32, 54.80s/it][INFO|trainer.py:3819] 2025-03-05 14:14:10,646 >>
+{'loss': 2.1925, 'grad_norm': 1.088645100593567, 'learning_rate': 5.633802816901409e-05, 'epoch': 1.87}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:14:10,646 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:14:10,646 >>   Batch size = 1
+ 49%|██████████████████████████████████████████████████████████████▎                                                                 | 37/76 [39:52<35:36, 54.79s/it][INFO|trainer.py:3819] 2025-03-05 14:15:05,407 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.1581645011901855, 'eval_accuracy': 0.5987282726885923, 'eval_runtime': 15.6583, 'eval_samples_per_second': 7.919, 'eval_steps_per_second': 7.919, 'epoch': 1.87}
+{'loss': 2.2222, 'grad_norm': 1.19731867313385, 'learning_rate': 5.492957746478874e-05, 'epoch': 1.92}
+[INFO|trainer.py:3821] 2025-03-05 14:15:05,407 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:15:05,408 >>   Batch size = 1
+ 50%|████████████████████████████████████████████████████████████████                                                                | 38/76 [40:47<34:41, 54.79s/it][INFO|trainer.py:3819] 2025-03-05 14:16:00,184 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.16406512260437, 'eval_accuracy': 0.5991419386356115, 'eval_runtime': 15.6533, 'eval_samples_per_second': 7.922, 'eval_steps_per_second': 7.922, 'epoch': 1.92}
+{'loss': 2.1935, 'grad_norm': 1.2751678228378296, 'learning_rate': 5.352112676056338e-05, 'epoch': 1.98}
+[INFO|trainer.py:3821] 2025-03-05 14:16:00,184 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:16:00,184 >>   Batch size = 1
+ 51%|█████████████████████████████████████████████████████████████████▋                                                              | 39/76 [41:41<33:46, 54.77s/it][INFO|trainer.py:3819] 2025-03-05 14:16:54,928 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.174445152282715, 'eval_accuracy': 0.5991025418787526, 'eval_runtime': 15.6187, 'eval_samples_per_second': 7.939, 'eval_steps_per_second': 7.939, 'epoch': 1.98}
+{'loss': 2.1972, 'grad_norm': 1.3944250345230103, 'learning_rate': 5.2112676056338026e-05, 'epoch': 2.03}
+[INFO|trainer.py:3821] 2025-03-05 14:16:54,928 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:16:54,928 >>   Batch size = 1
+ 53%|███████████████████████████████████████████████████████████████████▎                                                            | 40/76 [42:36<32:50, 54.75s/it][INFO|trainer.py:3819] 2025-03-05 14:17:49,622 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.189647912979126, 'eval_accuracy': 0.5988701010132846, 'eval_runtime': 15.6244, 'eval_samples_per_second': 7.936, 'eval_steps_per_second': 7.936, 'epoch': 2.03}
+{'loss': 2.2246, 'grad_norm': 1.505449891090393, 'learning_rate': 5.070422535211268e-05, 'epoch': 2.08}
+[INFO|trainer.py:3821] 2025-03-05 14:17:49,622 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:17:49,622 >>   Batch size = 1
+ 53%|███████████████████████████████████████████████████████████████████▎                                                            | 40/76 [42:52<32:50, 54.75s/it][INFO|trainer.py:3503] 2025-03-05 14:18:05,250 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-40
+[INFO|configuration_utils.py:731] 2025-03-05 14:18:05,265 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.2097837924957275, 'eval_accuracy': 0.5983343051200025, 'eval_runtime': 15.6269, 'eval_samples_per_second': 7.935, 'eval_steps_per_second': 7.935, 'epoch': 2.08}
+[INFO|configuration_utils.py:800] 2025-03-05 14:18:05,266 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:18:05,297 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-40/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:18:05,297 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-40/special_tokens_map.json
+ 54%|█████████████████████████████████████████████████████████████████████                                                           | 41/76 [43:31<31:57, 54.79s/it][INFO|trainer.py:3819] 2025-03-05 14:18:44,510 >>
+{'loss': 2.2348, 'grad_norm': 1.6204372644424438, 'learning_rate': 4.929577464788733e-05, 'epoch': 2.13}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:18:44,510 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:18:44,511 >>   Batch size = 1
+ 55%|██████████████████████████████████████████████████████████████████████▋                                                         | 42/76 [44:26<31:01, 54.76s/it][INFO|trainer.py:3819] 2025-03-05 14:19:39,185 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.234663486480713, 'eval_accuracy': 0.5974006019824448, 'eval_runtime': 15.6367, 'eval_samples_per_second': 7.93, 'eval_steps_per_second': 7.93, 'epoch': 2.13}
+{'loss': 2.2747, 'grad_norm': 1.7077606916427612, 'learning_rate': 4.788732394366197e-05, 'epoch': 2.18}
+[INFO|trainer.py:3821] 2025-03-05 14:19:39,186 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:19:39,186 >>   Batch size = 1
+ 57%|████████████████████████████████████████████████████████████████████████▍                                                       | 43/76 [45:20<30:06, 54.73s/it][INFO|trainer.py:3819] 2025-03-05 14:20:33,857 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.264101982116699, 'eval_accuracy': 0.5962147596009897, 'eval_runtime': 15.6334, 'eval_samples_per_second': 7.932, 'eval_steps_per_second': 7.932, 'epoch': 2.18}
+{'loss': 2.2997, 'grad_norm': 1.781778335571289, 'learning_rate': 4.647887323943662e-05, 'epoch': 2.24}
+[INFO|trainer.py:3821] 2025-03-05 14:20:33,858 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:20:33,858 >>   Batch size = 1
+ 58%|██████████████████████████████████████████████████████████████████████████                                                      | 44/76 [46:15<29:10, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:21:28,524 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.297759532928467, 'eval_accuracy': 0.5946585877050601, 'eval_runtime': 15.6289, 'eval_samples_per_second': 7.934, 'eval_steps_per_second': 7.934, 'epoch': 2.24}
+{'loss': 2.3249, 'grad_norm': 1.9085993766784668, 'learning_rate': 4.507042253521127e-05, 'epoch': 2.29}
+[INFO|trainer.py:3821] 2025-03-05 14:21:28,524 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:21:28,524 >>   Batch size = 1
+ 59%|███████████████████████████████████████████████████████████████████████████▊                                                    | 45/76 [47:10<28:15, 54.70s/it][INFO|trainer.py:3819] 2025-03-05 14:22:23,190 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.335331916809082, 'eval_accuracy': 0.5930708984036435, 'eval_runtime': 15.639, 'eval_samples_per_second': 7.929, 'eval_steps_per_second': 7.929, 'epoch': 2.29}
+{'loss': 2.3728, 'grad_norm': 2.1270718574523926, 'learning_rate': 4.366197183098591e-05, 'epoch': 2.34}
+[INFO|trainer.py:3821] 2025-03-05 14:22:23,190 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:22:23,190 >>   Batch size = 1
+ 59%|███████████████████████████████████████████████████████████████████████████▊                                                    | 45/76 [47:25<28:15, 54.70s/it][INFO|trainer.py:3503] 2025-03-05 14:22:38,811 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-45
+[INFO|configuration_utils.py:731] 2025-03-05 14:22:38,827 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.3766002655029297, 'eval_accuracy': 0.5912074318042139, 'eval_runtime': 15.6195, 'eval_samples_per_second': 7.939, 'eval_steps_per_second': 7.939, 'epoch': 2.34}
+[INFO|configuration_utils.py:800] 2025-03-05 14:22:38,827 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:22:38,858 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-45/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:22:38,859 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-45/special_tokens_map.json
+ 61%|█████████████████████████████████████████████████████████████████████████████▍                                                  | 46/76 [48:05<27:22, 54.76s/it][INFO|trainer.py:3819] 2025-03-05 14:23:18,084 >>
+{'loss': 2.429, 'grad_norm': 2.392293930053711, 'learning_rate': 4.225352112676056e-05, 'epoch': 2.39}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:23:18,084 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:23:18,084 >>   Batch size = 1
+ 62%|███████████████████████████████████████████████████████████████████████████████▏                                                | 47/76 [48:59<26:27, 54.73s/it][INFO|trainer.py:3819] 2025-03-05 14:24:12,747 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.4214625358581543, 'eval_accuracy': 0.5891588004475472, 'eval_runtime': 15.6221, 'eval_samples_per_second': 7.937, 'eval_steps_per_second': 7.937, 'epoch': 2.39}
+{'loss': 2.4543, 'grad_norm': 2.773632764816284, 'learning_rate': 4.0845070422535214e-05, 'epoch': 2.44}
+[INFO|trainer.py:3821] 2025-03-05 14:24:12,747 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:24:12,747 >>   Batch size = 1
+ 63%|████████████████████████████████████████████████████████████████████████████████▊                                               | 48/76 [49:54<25:32, 54.72s/it][INFO|trainer.py:3819] 2025-03-05 14:25:07,434 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.4695382118225098, 'eval_accuracy': 0.5868343917928676, 'eval_runtime': 15.6155, 'eval_samples_per_second': 7.941, 'eval_steps_per_second': 7.941, 'epoch': 2.44}
+{'loss': 2.5264, 'grad_norm': 3.0414247512817383, 'learning_rate': 3.943661971830986e-05, 'epoch': 2.5}
+[INFO|trainer.py:3821] 2025-03-05 14:25:07,434 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:25:07,434 >>   Batch size = 1
+ 64%|██████████████████████████████████████████████████████████████████████████████████▌                                             | 49/76 [50:49<24:36, 54.70s/it][INFO|trainer.py:3819] 2025-03-05 14:26:02,085 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.520563840866089, 'eval_accuracy': 0.5842184471374317, 'eval_runtime': 15.6193, 'eval_samples_per_second': 7.939, 'eval_steps_per_second': 7.939, 'epoch': 2.5}
+{'loss': 2.5677, 'grad_norm': 3.36741304397583, 'learning_rate': 3.802816901408451e-05, 'epoch': 2.55}
+[INFO|trainer.py:3821] 2025-03-05 14:26:02,085 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:26:02,085 >>   Batch size = 1
+ 66%|████████████████████████████████████████████████████████████████████████████████████▏                                           | 50/76 [51:43<23:42, 54.70s/it][INFO|trainer.py:3819] 2025-03-05 14:26:56,777 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.5737249851226807, 'eval_accuracy': 0.5813661219408418, 'eval_runtime': 15.6219, 'eval_samples_per_second': 7.938, 'eval_steps_per_second': 7.938, 'epoch': 2.55}
+{'loss': 2.6254, 'grad_norm': 3.5577597618103027, 'learning_rate': 3.661971830985916e-05, 'epoch': 2.6}
+[INFO|trainer.py:3821] 2025-03-05 14:26:56,777 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:26:56,777 >>   Batch size = 1
+ 66%|████████████████████████████████████████████████████████████████████████████████████▏                                           | 50/76 [51:59<23:42, 54.70s/it][INFO|trainer.py:3503] 2025-03-05 14:27:12,404 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-50
+[INFO|configuration_utils.py:731] 2025-03-05 14:27:12,419 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.627927780151367, 'eval_accuracy': 0.5781749846352648, 'eval_runtime': 15.6253, 'eval_samples_per_second': 7.936, 'eval_steps_per_second': 7.936, 'epoch': 2.6}
+[INFO|configuration_utils.py:800] 2025-03-05 14:27:12,420 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:27:12,451 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-50/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:27:12,452 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-50/special_tokens_map.json
+ 67%|█████████████████████████████████████████████████████████████████████████████████████▉                                          | 51/76 [52:38<22:48, 54.76s/it][INFO|trainer.py:3819] 2025-03-05 14:27:51,685 >>
+{'loss': 2.6646, 'grad_norm': 3.7032885551452637, 'learning_rate': 3.5211267605633805e-05, 'epoch': 2.65}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:27:51,686 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:27:51,686 >>   Batch size = 1
+ 68%|███████████████████████████████████████████████████████████████████████████████████████▌                                        | 52/76 [53:33<21:53, 54.73s/it][INFO|trainer.py:3819] 2025-03-05 14:28:46,345 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.681790590286255, 'eval_accuracy': 0.5750468821406621, 'eval_runtime': 15.6097, 'eval_samples_per_second': 7.944, 'eval_steps_per_second': 7.944, 'epoch': 2.65}
+{'loss': 2.6907, 'grad_norm': 3.63702654838562, 'learning_rate': 3.380281690140845e-05, 'epoch': 2.7}
+[INFO|trainer.py:3821] 2025-03-05 14:28:46,345 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:28:46,346 >>   Batch size = 1
+ 70%|█████████████████████████████████████████████████████████████████████████████████████████▎                                      | 53/76 [54:27<20:58, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:29:41,010 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.733511447906494, 'eval_accuracy': 0.5715208724017838, 'eval_runtime': 15.6289, 'eval_samples_per_second': 7.934, 'eval_steps_per_second': 7.934, 'epoch': 2.7}
+{'loss': 2.7402, 'grad_norm': 3.711364984512329, 'learning_rate': 3.23943661971831e-05, 'epoch': 2.76}
+[INFO|trainer.py:3821] 2025-03-05 14:29:41,010 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:29:41,010 >>   Batch size = 1
+ 71%|██████████████████████████████████████████████████████████████████████████████████████████▉                                     | 54/76 [55:22<20:03, 54.70s/it][INFO|trainer.py:3819] 2025-03-05 14:30:35,687 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.7813634872436523, 'eval_accuracy': 0.5679515262303607, 'eval_runtime': 15.6099, 'eval_samples_per_second': 7.944, 'eval_steps_per_second': 7.944, 'epoch': 2.76}
+{'loss': 2.8068, 'grad_norm': 3.783825397491455, 'learning_rate': 3.0985915492957744e-05, 'epoch': 2.81}
+[INFO|trainer.py:3821] 2025-03-05 14:30:35,687 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:30:35,687 >>   Batch size = 1
+ 72%|████████████████████████████████████████████████████████████████████████████████████████████▋                                   | 55/76 [56:17<19:08, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:31:30,425 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.8242058753967285, 'eval_accuracy': 0.5644294561671683, 'eval_runtime': 15.6583, 'eval_samples_per_second': 7.919, 'eval_steps_per_second': 7.919, 'epoch': 2.81}
+{'loss': 2.8936, 'grad_norm': 3.954113006591797, 'learning_rate': 2.9577464788732395e-05, 'epoch': 2.86}
+[INFO|trainer.py:3821] 2025-03-05 14:31:30,425 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:31:30,425 >>   Batch size = 1
+ 72%|████████████████████████████████████████████████████████████████████████████████████████████▋                                   | 55/76 [56:33<19:08, 54.71s/it][INFO|trainer.py:3503] 2025-03-05 14:31:46,041 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-55
+[INFO|configuration_utils.py:731] 2025-03-05 14:31:46,057 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.8609397411346436, 'eval_accuracy': 0.5611043698882708, 'eval_runtime': 15.6151, 'eval_samples_per_second': 7.941, 'eval_steps_per_second': 7.941, 'epoch': 2.86}
+[INFO|configuration_utils.py:800] 2025-03-05 14:31:46,058 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:31:46,093 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-55/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:31:46,094 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-55/special_tokens_map.json
+ 74%|██████████████████████████████████████████████████████████████████████████████████████████████▎                                 | 56/76 [57:12<18:15, 54.77s/it][INFO|trainer.py:3819] 2025-03-05 14:32:25,319 >>
+{'loss': 2.8981, 'grad_norm': 4.09583044052124, 'learning_rate': 2.8169014084507046e-05, 'epoch': 2.91}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:32:25,320 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:32:25,320 >>   Batch size = 1
+ 75%|████████████████████████████████████████████████████████████████████████████████████████████████                                | 57/76 [58:06<17:20, 54.74s/it][INFO|trainer.py:3819] 2025-03-05 14:33:20,011 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.8914318084716797, 'eval_accuracy': 0.5577674645823156, 'eval_runtime': 15.6242, 'eval_samples_per_second': 7.936, 'eval_steps_per_second': 7.936, 'epoch': 2.91}
+{'loss': 2.9306, 'grad_norm': 4.347690582275391, 'learning_rate': 2.676056338028169e-05, 'epoch': 2.96}
+[INFO|trainer.py:3821] 2025-03-05 14:33:20,011 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:33:20,011 >>   Batch size = 1
+ 76%|█████████████████████████████████████████████████████████████████████████████████████████████████▋                              | 58/76 [59:01<16:24, 54.72s/it][INFO|trainer.py:3819] 2025-03-05 14:34:14,664 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.9156651496887207, 'eval_accuracy': 0.5542059977622642, 'eval_runtime': 15.6269, 'eval_samples_per_second': 7.935, 'eval_steps_per_second': 7.935, 'epoch': 2.96}
+{'loss': 2.9473, 'grad_norm': 4.492018699645996, 'learning_rate': 2.535211267605634e-05, 'epoch': 3.02}
+[INFO|trainer.py:3821] 2025-03-05 14:34:14,664 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:34:14,664 >>   Batch size = 1
+ 78%|███████████████████████████████████████████████████████████████████████████████████████████████████▎                            | 59/76 [59:56<15:30, 54.72s/it][INFO|trainer.py:3819] 2025-03-05 14:35:09,377 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.934340476989746, 'eval_accuracy': 0.5508375750508219, 'eval_runtime': 15.6296, 'eval_samples_per_second': 7.934, 'eval_steps_per_second': 7.934, 'epoch': 3.02}
+{'loss': 2.9739, 'grad_norm': 4.503750801086426, 'learning_rate': 2.3943661971830986e-05, 'epoch': 3.07}
+[INFO|trainer.py:3821] 2025-03-05 14:35:09,378 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:35:09,378 >>   Batch size = 1
+ 79%|███████████████████████████████████████████████████████████████████████████████████████████████████▍                          | 60/76 [1:00:51<14:35, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:36:04,063 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.948730945587158, 'eval_accuracy': 0.5478946373134563, 'eval_runtime': 15.6499, 'eval_samples_per_second': 7.923, 'eval_steps_per_second': 7.923, 'epoch': 3.07}
+{'loss': 2.9669, 'grad_norm': 4.54807710647583, 'learning_rate': 2.2535211267605634e-05, 'epoch': 3.12}
+[INFO|trainer.py:3821] 2025-03-05 14:36:04,063 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:36:04,063 >>   Batch size = 1
+ 79%|███████████████████████████████████████████████████████████████████████████████████████████████████▍                          | 60/76 [1:01:06<14:35, 54.71s/it][INFO|trainer.py:3503] 2025-03-05 14:36:19,676 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-60
+[INFO|configuration_utils.py:731] 2025-03-05 14:36:19,691 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.9594080448150635, 'eval_accuracy': 0.5450817088737255, 'eval_runtime': 15.6117, 'eval_samples_per_second': 7.943, 'eval_steps_per_second': 7.943, 'epoch': 3.12}
+[INFO|configuration_utils.py:800] 2025-03-05 14:36:19,692 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:36:19,723 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-60/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:36:19,724 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-60/special_tokens_map.json
+ 80%|█████████████████████████████████████████████████████████████████████████████████████████████████████▏                        | 61/76 [1:01:45<13:41, 54.77s/it][INFO|trainer.py:3819] 2025-03-05 14:36:58,982 >>
+{'loss': 2.9892, 'grad_norm': 4.585299015045166, 'learning_rate': 2.112676056338028e-05, 'epoch': 3.17}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:36:58,982 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:36:58,982 >>   Batch size = 1
+ 82%|██████████████████████████████████████████████████████████████████████████████████████████████████████▊                       | 62/76 [1:02:40<12:46, 54.74s/it][INFO|trainer.py:3819] 2025-03-05 14:37:53,657 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.967254161834717, 'eval_accuracy': 0.5425524370833793, 'eval_runtime': 15.6343, 'eval_samples_per_second': 7.931, 'eval_steps_per_second': 7.931, 'epoch': 3.17}
+{'loss': 3.0134, 'grad_norm': 4.352641582489014, 'learning_rate': 1.971830985915493e-05, 'epoch': 3.22}
+[INFO|trainer.py:3821] 2025-03-05 14:37:53,658 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:37:53,658 >>   Batch size = 1
+ 83%|████████████████████████████████████████████████████████████████████████████████████████████████████████▍                     | 63/76 [1:03:35<11:51, 54.72s/it][INFO|trainer.py:3819] 2025-03-05 14:38:48,325 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.9731192588806152, 'eval_accuracy': 0.5402989425910459, 'eval_runtime': 15.6181, 'eval_samples_per_second': 7.939, 'eval_steps_per_second': 7.939, 'epoch': 3.22}
+{'loss': 3.0113, 'grad_norm': 4.349551200866699, 'learning_rate': 1.830985915492958e-05, 'epoch': 3.28}
+[INFO|trainer.py:3821] 2025-03-05 14:38:48,325 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:38:48,325 >>   Batch size = 1
+ 84%|██████████████████████████████████████████████████████████████████████████████████████████████████████████                    | 64/76 [1:04:29<10:56, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:39:43,008 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.9776055812835693, 'eval_accuracy': 0.5379981719904817, 'eval_runtime': 15.6244, 'eval_samples_per_second': 7.936, 'eval_steps_per_second': 7.936, 'epoch': 3.28}
+{'loss': 3.0259, 'grad_norm': 4.1978230476379395, 'learning_rate': 1.6901408450704224e-05, 'epoch': 3.33}
+[INFO|trainer.py:3821] 2025-03-05 14:39:43,008 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:39:43,008 >>   Batch size = 1
+ 86%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▊                  | 65/76 [1:05:24<10:01, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:40:37,722 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.9813339710235596, 'eval_accuracy': 0.5360716705800779, 'eval_runtime': 15.6332, 'eval_samples_per_second': 7.932, 'eval_steps_per_second': 7.932, 'epoch': 3.33}
+{'loss': 3.025, 'grad_norm': 4.223811149597168, 'learning_rate': 1.5492957746478872e-05, 'epoch': 3.38}
+[INFO|trainer.py:3821] 2025-03-05 14:40:37,723 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:40:37,723 >>   Batch size = 1
+ 86%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▊                  | 65/76 [1:05:40<10:01, 54.71s/it][INFO|trainer.py:3503] 2025-03-05 14:40:53,342 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-65
+[INFO|configuration_utils.py:731] 2025-03-05 14:40:53,358 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.9845945835113525, 'eval_accuracy': 0.534298816521424, 'eval_runtime': 15.6184, 'eval_samples_per_second': 7.939, 'eval_steps_per_second': 7.939, 'epoch': 3.38}
+[INFO|configuration_utils.py:800] 2025-03-05 14:40:53,359 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:40:53,391 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-65/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:40:53,391 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-65/special_tokens_map.json
+ 87%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                | 66/76 [1:06:19<09:07, 54.77s/it][INFO|trainer.py:3819] 2025-03-05 14:41:32,626 >>
+{'loss': 3.0179, 'grad_norm': 4.046574115753174, 'learning_rate': 1.4084507042253523e-05, 'epoch': 3.43}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:41:32,626 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:41:32,626 >>   Batch size = 1
+ 88%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████               | 67/76 [1:07:14<08:12, 54.75s/it][INFO|trainer.py:3819] 2025-03-05 14:42:27,343 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.987484931945801, 'eval_accuracy': 0.5325929369494303, 'eval_runtime': 15.6323, 'eval_samples_per_second': 7.932, 'eval_steps_per_second': 7.932, 'epoch': 3.43}
+{'loss': 3.0235, 'grad_norm': 4.046261787414551, 'learning_rate': 1.267605633802817e-05, 'epoch': 3.48}
+[INFO|trainer.py:3821] 2025-03-05 14:42:27,343 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:42:27,343 >>   Batch size = 1
+ 89%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋             | 68/76 [1:08:09<07:17, 54.74s/it][INFO|trainer.py:3819] 2025-03-05 14:43:22,040 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.9903688430786133, 'eval_accuracy': 0.5311155585672187, 'eval_runtime': 15.6104, 'eval_samples_per_second': 7.943, 'eval_steps_per_second': 7.943, 'epoch': 3.48}
+{'loss': 3.0663, 'grad_norm': 3.9942574501037598, 'learning_rate': 1.1267605633802817e-05, 'epoch': 3.54}
+[INFO|trainer.py:3821] 2025-03-05 14:43:22,040 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:43:22,040 >>   Batch size = 1
+ 91%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍           | 69/76 [1:09:03<06:23, 54.73s/it][INFO|trainer.py:3819] 2025-03-05 14:44:16,761 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.993351936340332, 'eval_accuracy': 0.5297839481853854, 'eval_runtime': 15.6339, 'eval_samples_per_second': 7.931, 'eval_steps_per_second': 7.931, 'epoch': 3.54}
+{'loss': 3.0488, 'grad_norm': 3.9054360389709473, 'learning_rate': 9.859154929577465e-06, 'epoch': 3.59}
+[INFO|trainer.py:3821] 2025-03-05 14:44:16,761 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:44:16,761 >>   Batch size = 1
+ 92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████          | 70/76 [1:09:58<05:28, 54.71s/it][INFO|trainer.py:3819] 2025-03-05 14:45:11,428 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 2.996492862701416, 'eval_accuracy': 0.5288344863450841, 'eval_runtime': 15.6299, 'eval_samples_per_second': 7.933, 'eval_steps_per_second': 7.933, 'epoch': 3.59}
+{'loss': 3.0381, 'grad_norm': 3.9048852920532227, 'learning_rate': 8.450704225352112e-06, 'epoch': 3.64}
+[INFO|trainer.py:3821] 2025-03-05 14:45:11,429 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:45:11,429 >>   Batch size = 1
+ 92%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████          | 70/76 [1:10:14<05:28, 54.71s/it][INFO|trainer.py:3503] 2025-03-05 14:45:27,049 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-70
+[INFO|configuration_utils.py:731] 2025-03-05 14:45:27,066 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 2.9996721744537354, 'eval_accuracy': 0.5279204815859558, 'eval_runtime': 15.6195, 'eval_samples_per_second': 7.939, 'eval_steps_per_second': 7.939, 'epoch': 3.64}
+[INFO|configuration_utils.py:800] 2025-03-05 14:45:27,066 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:45:27,098 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-70/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:45:27,098 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-70/special_tokens_map.json
+ 93%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋        | 71/76 [1:10:53<04:33, 54.78s/it][INFO|trainer.py:3819] 2025-03-05 14:46:06,361 >>
+{'loss': 3.0366, 'grad_norm': 3.867225408554077, 'learning_rate': 7.042253521126762e-06, 'epoch': 3.69}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:46:06,361 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:46:06,362 >>   Batch size = 1
+ 95%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎      | 72/76 [1:11:47<03:38, 54.74s/it][INFO|trainer.py:3819] 2025-03-05 14:47:01,022 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 3.002885580062866, 'eval_accuracy': 0.5270537529350584, 'eval_runtime': 15.6307, 'eval_samples_per_second': 7.933, 'eval_steps_per_second': 7.933, 'epoch': 3.69}
+{'loss': 3.0297, 'grad_norm': 3.916856527328491, 'learning_rate': 5.6338028169014084e-06, 'epoch': 3.74}
+[INFO|trainer.py:3821] 2025-03-05 14:47:01,022 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:47:01,022 >>   Batch size = 1
+ 96%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████     | 73/76 [1:12:42<02:44, 54.72s/it][INFO|trainer.py:3819] 2025-03-05 14:47:55,674 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 3.005815029144287, 'eval_accuracy': 0.5263052145547379, 'eval_runtime': 15.6237, 'eval_samples_per_second': 7.937, 'eval_steps_per_second': 7.937, 'epoch': 3.74}
+{'loss': 3.0628, 'grad_norm': 3.8193018436431885, 'learning_rate': 4.225352112676056e-06, 'epoch': 3.8}
+[INFO|trainer.py:3821] 2025-03-05 14:47:55,674 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:47:55,674 >>   Batch size = 1
+ 97%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋   | 74/76 [1:13:37<01:49, 54.70s/it][INFO|trainer.py:3819] 2025-03-05 14:48:50,347 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 3.008416175842285, 'eval_accuracy': 0.5258048757426289, 'eval_runtime': 15.6252, 'eval_samples_per_second': 7.936, 'eval_steps_per_second': 7.936, 'epoch': 3.8}
+{'loss': 3.0325, 'grad_norm': 3.8689348697662354, 'learning_rate': 2.8169014084507042e-06, 'epoch': 3.85}
+[INFO|trainer.py:3821] 2025-03-05 14:48:50,347 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:48:50,347 >>   Batch size = 1
+ 99%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎ | 75/76 [1:14:31<00:54, 54.69s/it][INFO|trainer.py:3819] 2025-03-05 14:49:44,999 >>
+***** Running Evaluation *****                                                                                                                                       
+{'eval_loss': 3.0105764865875244, 'eval_accuracy': 0.5254581842822699, 'eval_runtime': 15.6282, 'eval_samples_per_second': 7.934, 'eval_steps_per_second': 7.934, 'epoch': 3.85}
+{'loss': 3.061, 'grad_norm': 3.8732290267944336, 'learning_rate': 1.4084507042253521e-06, 'epoch': 3.9}
+[INFO|trainer.py:3821] 2025-03-05 14:49:44,999 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:49:44,999 >>   Batch size = 1
+ 99%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎ | 75/76 [1:14:47<00:54, 54.69s/it][INFO|trainer.py:3503] 2025-03-05 14:50:00,639 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-75
+[INFO|configuration_utils.py:731] 2025-03-05 14:50:00,655 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 3.012132406234741, 'eval_accuracy': 0.5252060450383724, 'eval_runtime': 15.6389, 'eval_samples_per_second': 7.929, 'eval_steps_per_second': 7.929, 'epoch': 3.9}
+[INFO|configuration_utils.py:800] 2025-03-05 14:50:00,656 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:50:00,688 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-75/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:50:00,688 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-75/special_tokens_map.json
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 76/76 [1:15:26<00:00, 54.77s/it][INFO|trainer.py:3819] 2025-03-05 14:50:39,962 >>
+{'loss': 3.061, 'grad_norm': 3.865701913833618, 'learning_rate': 0.0, 'epoch': 3.95}
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:50:39,962 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:50:39,962 >>   Batch size = 1
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 76/76 [1:15:42<00:00, 54.77s/it][INFO|trainer.py:3503] 2025-03-05 14:50:55,605 >> Saving model checkpoint to /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-76
+[INFO|configuration_utils.py:731] 2025-03-05 14:50:55,622 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+{'eval_loss': 3.012942314147949, 'eval_accuracy': 0.5250957341191673, 'eval_runtime': 15.6419, 'eval_samples_per_second': 7.927, 'eval_steps_per_second': 7.927, 'epoch': 3.95}
+[INFO|configuration_utils.py:800] 2025-03-05 14:50:55,622 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:50:55,656 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-76/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:50:55,656 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-76/special_tokens_map.json
+[INFO|trainer.py:3595] 2025-03-05 14:50:55,840 >> Deleting older checkpoint [/home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-5] due to args.save_total_limit
+[INFO|trainer.py:2394] 2025-03-05 14:50:55,847 >>
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+[INFO|trainer.py:2632] 2025-03-05 14:50:55,847 >> Loading best model from /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft/checkpoint-10 (score: 2.100123643875122).
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 76/76 [1:15:42<00:00, 59.77s/it]
+{'train_runtime': 4544.6135, 'train_samples_per_second': 2.167, 'train_steps_per_second': 0.017, 'train_loss': 2.53810200252031, 'epoch': 3.95}
+[INFO|configuration_utils.py:731] 2025-03-05 14:50:55,894 >> loading configuration file /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B/config.json
+[INFO|configuration_utils.py:800] 2025-03-05 14:50:55,895 >> Model config LlamaConfig {
+  "_name_or_path": "meta-llama/Llama-3.2-1B",
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 128000,
+  "eos_token_id": 128001,
+  "head_dim": 64,
+  "hidden_act": "silu",
+  "hidden_size": 2048,
+  "initializer_range": 0.02,
+  "intermediate_size": 8192,
+  "max_position_embeddings": 131072,
+  "mlp_bias": false,
+  "model_type": "llama",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 16,
+  "num_key_value_heads": 8,
+  "pretraining_tp": 1,
+  "rms_norm_eps": 1e-05,
+  "rope_scaling": {
+    "factor": 32.0,
+    "high_freq_factor": 4.0,
+    "low_freq_factor": 1.0,
+    "original_max_position_embeddings": 8192,
+    "rope_type": "llama3"
+  },
+  "rope_theta": 500000.0,
+  "tie_word_embeddings": true,
+  "torch_dtype": "float32",
+  "transformers_version": "4.43.3",
+  "use_cache": true,
+  "vocab_size": 128256
+}
+***** train metrics *****
+  epoch                    =      3.9513
+  total_flos               = 108965988GF
+  train_loss               =      2.5381
+  train_runtime            =  1:15:44.61
+  train_samples            =        2462
+  train_samples_per_second =       2.167
+  train_steps_per_second   =       0.017
+03/05/2025 14:50:58 - INFO - __main__ - *** Evaluate ***
+
+[INFO|trainer.py:3819] 2025-03-05 14:50:58,895 >>
+***** Running Evaluation *****
+[INFO|trainer.py:3821] 2025-03-05 14:50:58,895 >>   Num examples = 124
+[INFO|trainer.py:3824] 2025-03-05 14:50:58,895 >>   Batch size = 1
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 124/124 [00:15<00:00,  8.02it/s]
+***** eval metrics *****
+  epoch                   =     3.9513
+  eval_accuracy           =     0.5948
+  eval_loss               =     2.1001
+  eval_runtime            = 0:00:15.57
+  eval_samples            =        124
+  eval_samples_per_second =      7.961
+  eval_steps_per_second   =      7.961
+  perplexity              =     8.1672
+[INFO|configuration_utils.py:472] 2025-03-05 14:51:14,511 >> Configuration saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft-merged/config.json
+[INFO|configuration_utils.py:807] 2025-03-05 14:51:14,512 >> Configuration saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft-merged/generation_config.json
+[INFO|modeling_utils.py:2755] 2025-03-05 14:51:17,868 >> Model weights saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft-merged/model.safetensors
+[INFO|tokenization_utils_base.py:2702] 2025-03-05 14:51:17,871 >> tokenizer config file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft-merged/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2711] 2025-03-05 14:51:17,871 >> Special tokens file saved in /home/howonlee/HighSparsityPruning/llm_weights/sparsegpt_0.5_llama3.2-1B_lora_ft-merged/special_tokens_map.json

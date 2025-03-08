@@ -17,4 +17,4 @@ CUDA_VISIBLE_DEVICES=3 python finetune_dense_lm.py \
     --use_paser \
     --num_clusters 10 \
     --max_selected_data 20000 \
-    --output_dir /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv
+    --output_dir /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv_PASER

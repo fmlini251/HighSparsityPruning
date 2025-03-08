@@ -201,7 +201,7 @@ class SparseTrainer(Trainer):
                 teacher_outputs = self.teacher(**inputs)
             loss_gen_tokens = inputs['labels'] != -100
             student_logits = outputs.logits[loss_gen_tokens]
-            teacher_logits = teacher_outputs[loss_gen_tokens]
+            teacher_logits = teacher_outputs.logits[loss_gen_tokens]
 
             kl_loss = kldiv_loss(student_logits, teacher_logits)
             loss += kl_loss

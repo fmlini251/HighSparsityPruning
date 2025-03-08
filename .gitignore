@@ -5,3 +5,4 @@
 llm_weights
 dense_ft/wandb
 lora_ft/wandb
+lm_eval

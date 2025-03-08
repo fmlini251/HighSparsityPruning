@@ -53,7 +53,7 @@ from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
 from sparse_trainer import SparseTrainer
-
+from paser import PASER
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 # check_min_version("4.29.0.dev0")
 
@@ -208,7 +208,17 @@ class DataTrainingArguments:
     keep_linebreaks: bool = field(
         default=True, metadata={"help": "Whether to keep line breaks when using TXT files or not."}
     )
-    
+    use_paser: bool = field(
+        default=False, metadata={"help": "Whether to use the paser or not"}
+    )
+    num_clusters: Optional[int] = field(
+        default=None,
+        metadata={"help": "The number of clusters in paser. Needed to use paser"}
+    )
+    max_selected_data: Optional[int] = field(
+        default=None,
+        metadata={"help": "Maximum number of data points to select in paser. Needed to use paser"}
+    )
     def __post_init__(self):
         if self.streaming:
             require_version("datasets>=2.0.0", "The streaming feature requires `datasets>=2.0.0`")
@@ -318,6 +328,9 @@ def main():
             use_auth_token=True if model_args.use_auth_token else None,
             streaming=data_args.streaming,
         )
+
+
+    
     # See more about loading any type of standard or custom dataset (from files, python dict, pandas DataFrame, etc) at
     # https://huggingface.co/docs/datasets/loading_datasets.html.
 
@@ -326,7 +339,7 @@ def main():
     # Distributed training:
     # The .from_pretrained methods guarantee that only one local process can concurrently
     # download model & vocab.
-
+    
     config_kwargs = {
         "cache_dir": model_args.cache_dir,
         "revision": model_args.model_revision,
@@ -354,12 +367,9 @@ def main():
 
     model = AutoModelForCausalLM.from_pretrained(model_args.model_name_or_path, torch_dtype=model_args.torch_dtype, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto")
     model.config.output_hidden_states=True
-    if training_args.loss_type != "CrossEntropy":
-        teacher = AutoModelForCausalLM.from_pretrained(model_args.config_name, torch_dtype=model_args.torch_dtype, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto")
-        teacher.config.output_hidden_states=True
-        teacher.eval()
-    else:
-        teacher = None
+    teacher = AutoModelForCausalLM.from_pretrained(model_args.config_name, torch_dtype=model_args.torch_dtype, cache_dir=model_args.cache_dir, low_cpu_mem_usage=True, device_map="auto")
+    teacher.config.output_hidden_states=True
+    teacher.eval()
     ############################################################################################
     # model = prepare_model_for_kbit_training(model)
     # config = LoraConfig(
@@ -378,6 +388,18 @@ def main():
     embedding_size = model.get_input_embeddings().weight.shape[0]
     if len(tokenizer) > embedding_size:
         model.resize_token_embeddings(len(tokenizer))
+
+    if data_args.use_paser:
+        # Initialize PASER
+        # raw_datasets['train'] = raw_datasets['train'].select(range(1000))
+        # print("!!!!!!!!", raw_datasets['train'])
+        print("Initializing PASER...")
+        print(f"extracting {data_args.max_selected_data} data out of {raw_datasets['train'].num_rows}")
+        paser = PASER(data_args)
+        selected_data = paser.select_data(model, teacher, raw_datasets['train'], tokenizer)
+        # print(selected_data)
+        raw_datasets["train"] = datasets.Dataset.from_list(selected_data)
+        # print("!!!!!!!!!!!!!!!!paser succeded!!!!!!!!!!!!!!!!!")
 
     # Preprocessing the datasets.
     # First we tokenize all the texts.
@@ -528,7 +550,7 @@ def main():
     training_args.per_device_eval_batch_size = 1
     training_args.save_strategy = "steps"
     training_args.save_steps = 5
-    training_args.save_total_limit = 15
+    training_args.save_total_limit = 5
     training_args.load_best_model_at_end = True
     training_args.metric_for_best_model = "eval_loss"
     training_args.greater_is_better = False

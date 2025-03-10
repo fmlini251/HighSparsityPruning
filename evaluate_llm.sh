@@ -13,12 +13,12 @@ RESULT_DIR="/home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/original"
 echo "Start Evaluation"
 
 # run evaluation
-CUDA_VISIBLE_DEVICES=3 script -efq ${RESULT_DIR}/perplexity.log -c \
-    "accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${MODEL_DIR} \
-    --tasks wikitext \
-    --batch_size auto \
-    --output_path ${RESULT_DIR}"
+# CUDA_VISIBLE_DEVICES=3 script -efq ${RESULT_DIR}/perplexity.log -c \
+#     "accelerate launch -m lm_eval --model hf \
+#     --model_args pretrained=${MODEL_DIR} \
+#     --tasks wikitext \
+#     --batch_size auto \
+#     --output_path ${RESULT_DIR}"
 
 CUDA_VISIBLE_DEVICES=3 script -efq ${RESULT_DIR}/commonsense_zero_shot.log -c \
     "accelerate launch -m lm_eval --model hf \
@@ -28,3 +28,23 @@ CUDA_VISIBLE_DEVICES=3 script -efq ${RESULT_DIR}/commonsense_zero_shot.log -c \
     --num_fewshot 0 \
     --trust_remote_code \
     --output_path ${RESULT_DIR}"
+
+CUDA_VISIBLE_DEVICES=1 python evaluate_perplexity.py \
+    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/original \
+    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/original
+
+CUDA_VISIBLE_DEVICES=2 python evaluate_perplexity.py \
+    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_CrossEntropy \
+    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_CrossEntropy
+
+CUDA_VISIBLE_DEVICES=3 python evaluate_perplexity.py \
+    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv \
+    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv
+
+CUDA_VISIBLE_DEVICES=1 python evaluate_perplexity.py \
+    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_SquareHead \
+    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_SquareHead
+
+CUDA_VISIBLE_DEVICES=2 python evaluate_perplexity.py \
+    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/no_finetuning \
+    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/no_finetuning

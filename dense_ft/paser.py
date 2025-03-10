@@ -8,6 +8,7 @@ from sklearn.metrics import pairwise_distances
 from sklearn.decomposition import NMF
 import networkx as nx
 from rake_nltk import Rake
+from tqdm import tqdm
 
 class PASER:
     def __init__(self, args):
@@ -59,14 +60,14 @@ class PASER:
 
     def assess_capability_degradation(self, clusters, dataset, pruned_model, original_model, tokenizer):
         cluster_cds = {}
-        for cluster_id in set(clusters):
+        for cluster_id in tqdm(set(clusters)):
             cluster_samples = [sample for i, sample in enumerate(dataset) if clusters[i] == cluster_id]
             cluster_cds[cluster_id] = self.compute_cds(cluster_samples, pruned_model, original_model, tokenizer)
         return cluster_cds
 
     def compute_cds(self, samples, pruned_model, original_model, tokenizer):
         cds = 0
-        for sample in samples:
+        for sample in tqdm(samples):
             inputs = tokenizer(sample['instruction'], return_tensors='pt').to(self.device)
             with torch.no_grad():
                 pruned_output = pruned_model(**inputs)
@@ -87,8 +88,8 @@ class PASER:
     def select_samples(self, clusters, cluster_budgets, dataset, pruned_model, original_model, tokenizer):
         selected_data = []
         ccg = nx.Graph()
-        
-        for cluster_id, budget in cluster_budgets.items():
+        prev_selected = len(selected_data)
+        for cluster_id, budget in tqdm(cluster_budgets.items()):
             cluster_samples = [sample for i, sample in enumerate(dataset) if clusters[i] == cluster_id]
             cluster_samples = sorted(cluster_samples, key=lambda x: self.compute_ies(x, pruned_model, original_model, tokenizer), reverse=True)
             
@@ -101,7 +102,8 @@ class PASER:
                     selected_data.append(sample)
                     selected_for_cluster += 1
                     self.update_ccg(sample, ccg)
-        
+            print(f"cluster id: {cluster_id}, budget: {budget}, selected_data: {len(selected_data) - prev_selected} out of {len(cluster_samples)}")
+            prev_selected = len(selected_data)
         return selected_data
 
     def compute_ies(self, sample, pruned_model, original_model, tokenizer):

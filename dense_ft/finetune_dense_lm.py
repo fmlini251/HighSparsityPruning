@@ -44,6 +44,7 @@ from transformers import (
     HfArgumentParser,
     Trainer,
     TrainingArguments,
+    SchedulerType,
     default_data_collator,
     is_torch_tpu_available,
     set_seed,
@@ -393,14 +394,21 @@ def main():
         # Initialize PASER
         # raw_datasets['train'] = raw_datasets['train'].select(range(1000))
         # print("!!!!!!!!", raw_datasets['train'])
-        print("Initializing PASER...")
-        print(f"extracting {data_args.max_selected_data} data out of {raw_datasets['train'].num_rows}")
-        paser = PASER(data_args)
-        selected_data = paser.select_data(model, teacher, raw_datasets['train'], tokenizer)
-        # print(selected_data)
-        raw_datasets["train"] = datasets.Dataset.from_list(selected_data)
+        paser_data_path = f"{os.path.dirname(training_args.output_dir)}/PASER_{data_args.num_clusters}_{data_args.max_selected_data}"
+        if os.path.exists(paser_data_path):
+            raw_datasets['train'] = datasets.load_from_disk(paser_data_path)
+        else:
+            print("Initializing PASER...")
+            print(f"extracting {data_args.max_selected_data} data out of {raw_datasets['train'].num_rows}")
+            paser = PASER(data_args)
+            selected_data = paser.select_data(model, teacher, raw_datasets['train'], tokenizer)
+            # print(selected_data)
+            raw_datasets["train"] = datasets.Dataset.from_list(selected_data)
+            print(len(raw_datasets['train']))
+            raw_datasets['train'].save_to_disk(paser_data_path)
+    
         # print("!!!!!!!!!!!!!!!!paser succeded!!!!!!!!!!!!!!!!!")
-
+    
     # Preprocessing the datasets.
     # First we tokenize all the texts.
     if training_args.do_train:
@@ -532,10 +540,12 @@ def main():
 ################################################################################################################
     batch_size = 128
     training_args.gradient_accumulation_steps = batch_size // training_args.per_device_train_batch_size
-    # training_args.fp16 = True
-    training_args.bf16 = True
+    if model_args.torch_dtype == "float16":
+        training_args.fp16 = True
+    elif model_args.torch_dtype == "bfloat16":
+        training_args.bf16 = True
     training_args.optim = "adamw_torch"
-    training_args.lr_scheduler_type="linear"
+    training_args.lr_scheduler_type=SchedulerType("linear")
     training_args.warmup_steps = 5
     training_args.weight_decay = 0
     training_args.adam_beta1 = 0.9
@@ -589,7 +599,7 @@ def main():
 
         #############################################################
         model.save_pretrained(training_args.output_dir)
-        torch.save(trainer.model.state_dict(), f"{training_args.output_dir}/adapter_model.bin")
+        # torch.save(trainer.model.state_dict(), f"{training_args.output_dir}/adapter_model.bin")
         #############################################################
 
         metrics = train_result.metrics

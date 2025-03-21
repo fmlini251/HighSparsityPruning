@@ -9,6 +9,7 @@ from sklearn.decomposition import NMF
 import networkx as nx
 from rake_nltk import Rake
 from tqdm import tqdm
+import pdb
 
 class PASER:
     def __init__(self, args):
@@ -20,7 +21,7 @@ class PASER:
     def select_data(self, pruned_model, original_model, dataset, tokenizer):
         pruned_model.eval()
         original_model.eval()
-        
+        pdb.set_trace()
         print("Performing semantic-structural clustering...")
         clusters = self.semantic_structural_clustering(dataset)
         

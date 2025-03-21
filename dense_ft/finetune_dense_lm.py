@@ -312,7 +312,7 @@ def main():
     # raw_datasets = load_dataset(
     #     'allenai/c4', data_files={'train': 'en/c4-train.00000-of-01024.json.gz', 'validation': 'en/c4-validation.00000-of-00008.json.gz'}
     # )
-    raw_datasets = load_dataset("tatsu-lab/alpaca")
+    raw_datasets = load_dataset(data_args.dataset_name)
 
     if "validation" not in raw_datasets.keys():
         raw_datasets["validation"] = load_dataset(
@@ -415,14 +415,22 @@ def main():
         column_names = list(raw_datasets["train"].features)
     else:
         column_names = list(raw_datasets["validation"].features)
-    text_column_name = "text" if "text" in column_names else column_names[0]
-
+    if "text" in column_names:
+        text_column_name = "text"
+    elif "messages" in column_names:
+        text_column_name = "messages"
+    else:
+        text_column_name = column_names[0]
     # since this will be pickled to avoid _LazyModule error in Hasher force logger loading before tokenize_function
     tok_logger = transformers.utils.logging.get_logger("transformers.tokenization_utils_base")
 
     def tokenize_function(examples):
         with CaptureLogger(tok_logger) as cl:
-            output = tokenizer(examples[text_column_name])
+            if text_column_name == "messages":
+                output = tokenizer.apply_chat_template(examples[text_column_name], tokenize=False, add_generation_prompt=True, return_tensors="pt")
+                output = tokenizer(output)
+            else:
+                output = tokenizer(examples[text_column_name])
         # clm input could be much much longer than block_size
         if "Token indices sequence length is longer than the" in cl.out:
             tok_logger.warning(
@@ -556,10 +564,10 @@ def main():
     training_args.logging_strategy = "steps"
     training_args.logging_steps = 1
     training_args.eval_strategy = "steps"
-    training_args.eval_steps = 1
-    training_args.per_device_eval_batch_size = 1
+    training_args.eval_steps = 300
+    training_args.per_device_eval_batch_size = 8
     training_args.save_strategy = "steps"
-    training_args.save_steps = 5
+    training_args.save_steps = 300
     training_args.save_total_limit = 5
     training_args.load_best_model_at_end = True
     training_args.metric_for_best_model = "eval_loss"
@@ -598,7 +606,7 @@ def main():
         # trainer.save_model()  # Saves the tokenizer too for easy upload
 
         #############################################################
-        model.save_pretrained(training_args.output_dir)
+        # model.save_pretrained(training_args.output_dir)
         # torch.save(trainer.model.state_dict(), f"{training_args.output_dir}/adapter_model.bin")
         #############################################################
 

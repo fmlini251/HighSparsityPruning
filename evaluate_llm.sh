@@ -29,22 +29,18 @@ CUDA_VISIBLE_DEVICES=3 script -efq ${RESULT_DIR}/commonsense_zero_shot.log -c \
     --trust_remote_code \
     --output_path ${RESULT_DIR}"
 
-CUDA_VISIBLE_DEVICES=1 python evaluate_perplexity.py \
-    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/original \
-    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/original
 
-CUDA_VISIBLE_DEVICES=2 python evaluate_perplexity.py \
-    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_CrossEntropy \
-    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_CrossEntropy
+python evaluate_perplexity.py \
+    --model llm_weights/llama-3.1-8B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_SquareHead/checkpoint-76 \
+    --save lm_eval/llama-3.1-8B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_SquareHead/
+python evaluate_perplexity.py \
+    --model llm_weights/llama-3.1-8B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv_epoch1/checkpoint-19 \
+    --save lm_eval/llama-3.1-8B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv_epoch1/
 
-CUDA_VISIBLE_DEVICES=3 python evaluate_perplexity.py \
-    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv \
-    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_KLDiv
-
-CUDA_VISIBLE_DEVICES=1 python evaluate_perplexity.py \
-    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_SquareHead \
-    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/dense_ft_bf16_1e-4_alpaca_SquareHead
-
-CUDA_VISIBLE_DEVICES=2 python evaluate_perplexity.py \
-    --model /home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/sparsegpt_0.5/no_finetuning \
-    --save /home/howonlee/HighSparsityPruning/lm_eval/llama3.2-1B/sparsegpt_0.5/no_finetuning
+CUDA_VISIBLE_DEVICES=0 python evaluate_perplexity.py \
+    --model meta-llama/Llama-3.1-8B \
+    --save lm_eval/llama-3.1-8B/original/no_finetuning
+    
+CUDA_VISIBLE_DEVICES=0 python evaluate_perplexity.py \
+    --model llm_weights/llama-3.1-8B/sparsegpt_0.5/no_finetuning \
+    --save lm_eval/llama-3.1-8B/sparsegpt_0.5/no_finetuning

@@ -58,7 +58,7 @@ def main():
     model = get_llm(args.model, args.cache_dir)
     
     model.eval()
-    tokenizer = AutoTokenizer.from_pretrained('/home/howonlee/HighSparsityPruning/llm_weights/llama3.2-1B/original', use_fast=False)
+    tokenizer = AutoTokenizer.from_pretrained('meta-llama/Meta-Llama-3.1-8B', use_fast=False)
 
     device = torch.device("cuda")
     if "30b" in args.model or "65b" in args.model: # for 30b and 65b we use device_map to load onto multiple A6000 GPUs, thus the processing here.
